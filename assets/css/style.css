@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Luckiest+Guy&family=Orbitron&display=swap');
+
+/*Removes browser padding/margin/border box sizing*/
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+html {
+    font-size: 2rem;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    color: #99FCFF;
+    background-color: #33047F;
+}
+
+button {
+    font-family: 'Luckiest Guy', cursive;
+    font-weight: 400;
+    background-color: #99FCFF;
+    color: #33047F;
+    border-radius: 1rem;
+    padding: 0.2rem;
+}
+
+h1,h2,h3 {
+    margin: 0.5rem auto;
+    width:fit-content;
+    font-family: 'Bungee Inline', cursive;
+    font-weight: 400;
+
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h3 {
+    font-size: 0.9rem;
+    padding-top: 0.1rem;
+    margin-top: 0;
+    
+}
+
+h1 + p {
+    font-size: 0.5rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+#game_instructions {
+    margin: 0 auto;
+    width:fit-content;
+    display: block;
+    font-size: 0.5rem;
+}
+
+#main_game_area {
+    height: 50%;
+}
+
+#preamble {
+    height: 50%;
+}
+
+#how_to_play {
+    position: relative;
+    margin-top: 0.2rem;
+}
+#how_to_play_window {
+    text-align: center;
+    border: solid 0.1rem #99FCFF;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 2.5%;
+    width: 95%;
+    height: 200%;
+    background-color: #33047F;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
+}
+
+#how_to_play_window>button {
+    position: relative;
+    top: 10%;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#how_to_play>h2 {
+    margin-bottom: 0.1rem;
+}
+
