@@ -71,9 +71,13 @@ h1 + p {
     position: relative;
     margin-top: 0.2rem;
 }
+
+
 #how_to_play_window {
     text-align: center;
     border: solid 0.1rem #99FCFF;
+    /*Z-index used to ensure window content displays in front, when the window is open. The window is open on loading, and is opened and closed using the
+    close and game instructions buttons*/
     z-index: 1;
     position: absolute;
     top: 0;
@@ -81,11 +85,13 @@ h1 + p {
     width: 95%;
     height: 200%;
     background-color: #33047F;
+    /*To be changed to display: none with JS when the close button is clicked*/
     display: block;
     box-sizing: border-box;
     padding: 0 0.5rem;
 }
 
+/*close button*/
 #how_to_play_window>button {
     position: relative;
     top: 10%;
