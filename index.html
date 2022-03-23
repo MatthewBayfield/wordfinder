@@ -15,6 +15,8 @@
 <body>
     <!--Main page content-->
     <main>
+        <div id="preamble">
+        <section>
         <h1>WordFinder</h1>
         <!--Introduction-->
         <p>
@@ -22,19 +24,22 @@
             Race against the clock as you try to find the hidden words in as many random sets of letters as you can.
             Beat your best score! And set the bar for your friends.
         </p>
+        </section>
         <!--How to play-->
-        <section>
+        <section id="how_to_play">
             <h2>How to Play</h2>
             <!--Button to open game instructions window-->
-            <button type="button">Game Instructions</button>
+            <button id="game_instructions" type="button">Game Instructions</button>
             <!--Game instructions-->
-            <div id="how_to_play">
+            <div id="how_to_play_window">
                 <h3>How to play</h3>
-                <p></p>
+                <p>instructions</p>
+                <button type="button">CLOSE</button>
             </div>
         </section>
+        </div>
         <!--Main game area-->
-        <section>
+        <section id="main_game_area">
         </section>
     </main>
     <script src="assets/js/script.js"></script>
