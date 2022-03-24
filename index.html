@@ -16,30 +16,63 @@
     <!--Main page content-->
     <main>
         <div id="preamble">
-        <section>
-        <h1>WordFinder</h1>
-        <!--Introduction-->
-        <p>
-            WordFinder: a simple game that puts your vocabulary and pattern recognition abilities to the test.
-            Race against the clock as you try to find the hidden words in as many random sets of letters as you can.
-            Beat your best score! And set the bar for your friends.
-        </p>
-        </section>
-        <!--How to play-->
-        <section id="how_to_play">
-            <h2>How to Play</h2>
-            <!--Button to open game instructions window-->
-            <button id="game_instructions" type="button">Game Instructions</button>
-            <!--Game instructions-->
-            <div id="how_to_play_window">
-                <h3>How to play</h3>
-                <p>instructions</p>
-                <button type="button">CLOSE</button>
-            </div>
-        </section>
+            <section>
+                <h1>WordFinder</h1>
+                <!--Introduction-->
+                <p>
+                    WordFinder: a simple game that puts your vocabulary and pattern recognition abilities to the test.
+                    Race against the clock as you try to find the hidden words in as many random sets of letters as you
+                    can.
+                    Beat your best score! And set the bar for your friends.
+                </p>
+            </section>
+            <!--How to play-->
+            <section id="how_to_play">
+                <h2>How to Play</h2>
+                <!--Button to open game instructions window-->
+                <button id="game_instructions" type="button">Game Instructions</button>
+                <!--Game instructions-->
+                <div id="how_to_play_window">
+                    <h3>How to play</h3>
+                    <p>instructions</p>
+                    <button type="button">CLOSE</button>
+                </div>
+            </section>
         </div>
         <!--Main game area-->
         <section id="main_game_area">
+            <!--Game settings radio inputs and buttons-->
+            <h2>Game settings</h2>
+            <div>
+                <!--timer-->
+                <div>
+                    <h3>Timer</h3>
+                    <label for="no_timer">No timer</label>
+                    <input type="radio" id="no_timer" name="timer">
+                    <label for="threemins">3m</label>
+                    <input id="threemins" type="radio" name="timer">
+                    <label for="fivemins">5m</label>
+                    <input type="radio" id="fivemins" name="timer" checked>
+                    <label for="tenmins">10m</label>
+                    <input type="radio" id="tenmins" name="timer">
+                </div>
+                <!--# of letters-->
+                <div>
+                    <h3># of letters</h3>
+                    <label for="seven">7</label>
+                    <input type="radio" id="seven" name="letters" checked>
+                    <label for="eight">8</label>
+                    <input id="eight" type="radio" name="letters">
+                </div>
+                <!--Sound mode-->
+                <div>
+                    <h3>Sound mode</h3>
+                    <label for="on">on</label>
+                    <input type="radio" id="on" name="sound">
+                    <label for="off">off</label>
+                    <input id="off" type="radio" name="sound" checked>
+                </div>
+            </div>
         </section>
     </main>
     <script src="assets/js/script.js"></script>
