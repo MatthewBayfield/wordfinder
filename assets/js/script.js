@@ -21,6 +21,6 @@ for (let button of allButtons) {
     })
 
     button.addEventListener('mouseleave', function (event) {
-        this.style.border = "none";
+        this.removeAttribute('style');
     })
 }
