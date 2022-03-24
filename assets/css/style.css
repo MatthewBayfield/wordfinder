@@ -25,6 +25,9 @@ button {
     color: #33047F;
     border-radius: 1rem;
     padding: 0.2rem;
+    /*Border color set to make it invisible. Stops a change in the game instructions button content box size and thus a shift in the  content below it,
+     when a border is added as a result of an event listener.*/
+    border: solid 0.1rem #33047F;
 }
 
 h1,
