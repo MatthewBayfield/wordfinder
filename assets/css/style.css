@@ -109,6 +109,7 @@ h1+p {
 
 #game_settings>div {
     display: flex;
+    padding: 0 0.3rem;
 }
 
 #game_settings>div>div {
@@ -123,4 +124,9 @@ h1+p {
 
 #game_settings h3 {
     line-height: 0.8;
+}
+
+#game_settings input,
+#game_settings label {
+    font-size: 0.5rem;
 }
