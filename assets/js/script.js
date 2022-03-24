@@ -11,3 +11,16 @@ document.getElementById('game_instructions').addEventListener('click', function 
     howToPlayWindow = document.getElementById('how_to_play_window');
     howToPlayWindow.style.display = 'block';
 })
+
+// Gives all buttons a form of focus when hovered over.
+
+let allButtons = document.getElementsByTagName('button');
+for (let button of allButtons) {
+    button.addEventListener('mouseenter', function (event) {
+        this.style.border = "solid 0.1rem gold";
+    })
+
+    button.addEventListener('mouseleave', function (event) {
+        this.style.border = "none";
+    })
+}
