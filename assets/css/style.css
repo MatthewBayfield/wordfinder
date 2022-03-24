@@ -27,26 +27,27 @@ button {
     padding: 0.2rem;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
     margin: 0.5rem auto;
-    width:fit-content;
+    width: fit-content;
     font-family: 'Bungee Inline', cursive;
     font-weight: 400;
 
 }
 
 h2 {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 h3 {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     padding-top: 0.1rem;
     margin-top: 0;
-    
 }
 
-h1 + p {
+h1+p {
     font-size: 0.5rem;
     text-align: center;
     padding: 0 1rem;
@@ -54,7 +55,7 @@ h1 + p {
 
 #game_instructions {
     margin: 0 auto;
-    width:fit-content;
+    width: fit-content;
     display: block;
     font-size: 0.5rem;
 }
@@ -103,3 +104,20 @@ h1 + p {
     margin-bottom: 0.1rem;
 }
 
+#game_settings>div {
+    display: flex;
+}
+
+#game_settings>div>div {
+    flex: 1 auto;
+}
+
+#game_settings input {
+    margin-right: 0.3rem;
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+#game_settings h3 {
+    line-height: 0.8;
+}
