@@ -38,41 +38,44 @@
                     <button type="button">CLOSE</button>
                 </div>
             </section>
+            <section id="game_settings">
+                <!--Game settings radio inputs and buttons-->
+                <h2>Game settings</h2>
+                <div>
+                    <!--timer-->
+                    <div>
+                        <h3>Timer</h3>
+                        <label for="no_timer">No timer</label>
+                        <input type="radio" id="no_timer" name="timer">
+                        <label for="threemins">3m</label>
+                        <input id="threemins" type="radio" name="timer">
+                        <label for="fivemins">5m</label>
+                        <input type="radio" id="fivemins" name="timer" checked>
+                        <label for="tenmins">10m</label>
+                        <input type="radio" id="tenmins" name="timer">
+                    </div>
+                    <!--# of letters-->
+                    <div>
+                        <h3># of letters</h3>
+                        <label for="seven">7</label>
+                        <input type="radio" id="seven" name="letters" checked>
+                        <label for="eight">8</label>
+                        <input id="eight" type="radio" name="letters">
+                    </div>
+                    <!--Sound mode-->
+                    <div>
+                        <h3>Sound mode</h3>
+                        <label for="on">on</label>
+                        <input type="radio" id="on" name="sound">
+                        <label for="off">off</label>
+                        <input id="off" type="radio" name="sound" checked>
+                    </div>
+                </div>
+            </section>
         </div>
         <!--Main game area-->
         <section id="main_game_area">
-            <!--Game settings radio inputs and buttons-->
-            <h2>Game settings</h2>
-            <div>
-                <!--timer-->
-                <div>
-                    <h3>Timer</h3>
-                    <label for="no_timer">No timer</label>
-                    <input type="radio" id="no_timer" name="timer">
-                    <label for="threemins">3m</label>
-                    <input id="threemins" type="radio" name="timer">
-                    <label for="fivemins">5m</label>
-                    <input type="radio" id="fivemins" name="timer" checked>
-                    <label for="tenmins">10m</label>
-                    <input type="radio" id="tenmins" name="timer">
-                </div>
-                <!--# of letters-->
-                <div>
-                    <h3># of letters</h3>
-                    <label for="seven">7</label>
-                    <input type="radio" id="seven" name="letters" checked>
-                    <label for="eight">8</label>
-                    <input id="eight" type="radio" name="letters">
-                </div>
-                <!--Sound mode-->
-                <div>
-                    <h3>Sound mode</h3>
-                    <label for="on">on</label>
-                    <input type="radio" id="on" name="sound">
-                    <label for="off">off</label>
-                    <input id="off" type="radio" name="sound" checked>
-                </div>
-            </div>
+
         </section>
     </main>
     <script src="assets/js/script.js"></script>
