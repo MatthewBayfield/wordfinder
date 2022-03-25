@@ -24,3 +24,13 @@ for (let button of allButtons) {
         this.removeAttribute('style');
     })
 }
+
+//start button click event listener. Changes button to a quit button.
+document.getElementById('main_game_area').children[1].addEventListener('click', function (event) {
+    if(this.textContent === 'Start') {
+        this.textContent='Quit';
+    } else {
+        this.textContent='Start';
+    }
+})
+
