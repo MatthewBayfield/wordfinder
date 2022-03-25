@@ -130,3 +130,14 @@ h1+p {
 #game_settings label {
     font-size: 0.5rem;
 }
+
+#main_game_area>h2 {
+    line-height: 1;
+    margin: 0.8rem auto 0.6rem;
+}
+
+#main_game_area>h2 + button {
+    width: fit-content;
+    margin: 0 auto;
+    display: block;
+}
