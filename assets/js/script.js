@@ -47,3 +47,24 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         this.textContent = 'Start';
     }
 })
+
+/** when called sets the start time of the timer according to the currently checked timer radio input.
+ */
+function setTimer() {
+    if (document.getElementById('threemins').checked) {
+        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '03:00';
+    } else if (document.getElementById('fivemins').checked) {
+        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '05:00';
+    } else if (document.getElementById('tenmins').checked) {
+        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '10:00';
+    } else if (document.getElementById('no_timer').checked) {
+        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '--:--';
+    }
+
+}
+
+for (let input of document.querySelectorAll('[name=timer]')) {
+    input.addEventListener('click', function (event) {
+        setTimer();
+    })
+}
