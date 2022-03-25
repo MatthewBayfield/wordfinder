@@ -122,13 +122,35 @@ h1+p {
     height: 0.8rem;
 }
 
-#game_settings h3 {
-    line-height: 0.8;
+#game_settings h3,
+#main_game_area h3 {
+    line-height: 1;
 }
 
 #game_settings input,
 #game_settings label {
     font-size: 0.5rem;
+}
+
+#main_game_area>div {
+    display: flex;
+}
+
+.sidebar {
+    flex: 1 auto;
+}
+
+.sidebar>div {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+#main_game_area h3 {
+    margin: 0 auto;
+}
+
+#gameplay_area {
+    flex: 3 auto;
 }
 
 #main_game_area>h2 {
