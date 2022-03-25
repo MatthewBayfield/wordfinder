@@ -25,10 +25,13 @@ for (let button of allButtons) {
     })
 }
 
+let gameStartSound = new Audio("assets/audio/game_start.mp3");
+
 //start button click event listener. Changes button to a quit button.
 document.getElementById('main_game_area').children[1].addEventListener('click', function (event) {
     if(this.textContent === 'Start') {
         this.textContent='Quit';
+        gameStartSound.play();
     } else {
         this.textContent='Start';
     }
