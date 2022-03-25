@@ -48,7 +48,7 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
     }
 })
 
-/** when called sets the start time of the timer according to the currently checked timer radio input.
+/** When called sets the start time of the timer, according to the currently checked timer radio input.
  */
 function setTimer() {
     if (document.getElementById('threemins').checked) {
@@ -63,6 +63,7 @@ function setTimer() {
 
 }
 
+// Event listener to call the setTimer function when any of the timer radio inputs are checked.
 for (let input of document.querySelectorAll('[name=timer]')) {
     input.addEventListener('click', function (event) {
         setTimer();
