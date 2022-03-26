@@ -97,6 +97,7 @@ function timer_Adjuster() {
     } else {
         clearInterval(timer);
         setTimer();
+        document.getElementById('main_game_area').children[1].textContent='Start';
         if (soundMode()) {
             timeUpSound.play();
         }
