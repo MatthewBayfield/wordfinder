@@ -97,7 +97,9 @@ function timer_Adjuster() {
     } else {
         clearInterval(timer);
         setTimer();
-        timeUpSound.play();
+        if (soundMode()) {
+            timeUpSound.play();
+        }
     }
 
 }
