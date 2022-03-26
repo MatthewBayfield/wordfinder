@@ -34,6 +34,7 @@ function soundMode() {
 
 // sound effect audio objects variables.
 let gameStartSound = new Audio("assets/audio/game_start.mp3");
+let timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
 
 
 //start button click event listener. Changes button to a quit button, and a quit button to start button. Triggers start game sound and starts/resets clock.
@@ -96,6 +97,7 @@ function timer_Adjuster() {
     } else {
         clearInterval(timer);
         setTimer();
+        timeUpSound.play();
     }
 
 }
