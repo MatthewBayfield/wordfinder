@@ -125,3 +125,29 @@ async function sevenLetter1000Words(letter) {
         alert('Sorry there seems to be a problem, please try again later.');
     }
 }
+
+/** Generates an array of upto 5000 7 Letter word containing objects, consisting of 5 sets of upto 1000 words,
+ *  with each set containing words beginning with a single random letter.
+ * @returns  random7Letter5000WordArray
+ */
+ async function random7Letter5000Words() {
+    try {
+        let partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
+        let randomSetOf5Letters = new Set();
+        let random7Letter5000WordArray = [];
+        while (randomSetOf5Letters.size < 5) {
+            let randomIndex = Math.floor(Math.random() * 23);
+            randomSetOf5Letters.add(partialAlphabet[randomIndex]);
+        }
+        for (letter of randomSetOf5Letters) {
+            let batch = await sevenLetter1000Words(letter);
+            if (batch === undefined) {
+                throw new Error('propagated error from called function');
+            }
+            random7Letter5000WordArray = random7Letter5000WordArray.concat(batch);
+        }
+        return random7Letter5000WordArray;
+    } catch (error) {
+        console.error(error);
+    }
+}
