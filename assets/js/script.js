@@ -107,11 +107,11 @@ function timer_Adjuster() {
 
 // Game mechanics functions
 
-/**Generates an array of upto 1000 7 Letter words beginnning with a letter submitted as a parameter. 
- * @param {string} letter - words in array will begin with this letter
+/**Generates an array of single-word containing objects, producing upto 1000 7 Letter words beginnning with the letter submitted as a parameter. 
+ * @param {string} letter - all words will begin with this letter
  * @returns wordArray 
  */
-async function random7Letter1000Words(letter) {
+async function sevenLetter1000Words(letter) {
     //Words obtained using the datamuse API via the fetch API
     try {
         let wordArray = await fetch(`https://api.datamuse.com/words?sp=${letter}??????&md=f&max=1000`);
@@ -121,7 +121,7 @@ async function random7Letter1000Words(letter) {
         wordArray = await wordArray.json();
         return wordArray;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         alert('Sorry there seems to be a problem, please try again later.');
     }
 }
