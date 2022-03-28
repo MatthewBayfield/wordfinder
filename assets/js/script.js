@@ -97,10 +97,31 @@ function timer_Adjuster() {
     } else {
         clearInterval(timer);
         setTimer();
-        document.getElementById('main_game_area').children[1].textContent='Start';
+        document.getElementById('main_game_area').children[1].textContent = 'Start';
         if (soundMode()) {
             timeUpSound.play();
         }
     }
 
+}
+
+// Game mechanics functions
+
+/**Generates an array of upto 1000 7 Letter words beginnning with a letter submitted as a parameter. 
+ * @param {string} letter - words in array will begin with this letter
+ * @returns wordArray 
+ */
+async function random7Letter1000Words(letter) {
+    //Words obtained using the datamuse API via the fetch API
+    try {
+        let wordArray = await fetch(`https://api.datamuse.com/words?sp=${letter}??????&md=f&max=1000`);
+        if (!wordArray.ok) {
+            throw new Error('HTTP error');
+        }
+        wordArray = await wordArray.json();
+        return wordArray;
+    } catch (error) {
+        console.log(error);
+        alert('Sorry there seems to be a problem, please try again later.');
+    }
 }
