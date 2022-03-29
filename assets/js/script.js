@@ -253,23 +253,30 @@ const words8Letters = random8Letter5000Words().then(function (result) {
  * @returns a random 8 letter word
  */
 async function random8LetterWordSelector() {
-    let words8LettersArray = await words8Letters;
-    let randomIndex = Math.floor(Math.random() * words8LettersArray.length);
-    let selectedStringCharacterArray = [];
-    const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    do {
-        selectedStringCharacterArray = [];
-        randomIndex = Math.floor(Math.random() * words8LettersArray.length);
-        for (let character of words8LettersArray[randomIndex].word) {
-            selectedStringCharacterArray.push(character);
+    try {
+        let words8LettersArray = await words8Letters;
+        if (words8LettersArray === undefined) {
+            throw new Error('propagated error from called function');
         }
-        validCharacters = selectedStringCharacterArray.every(function (character) {
-            return Alphabet.includes(character);
-        })
+        let randomIndex = Math.floor(Math.random() * words8LettersArray.length);
+        let selectedStringCharacterArray = [];
+        const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        do {
+            selectedStringCharacterArray = [];
+            randomIndex = Math.floor(Math.random() * words8LettersArray.length);
+            for (let character of words8LettersArray[randomIndex].word) {
+                selectedStringCharacterArray.push(character);
+            }
+            validCharacters = selectedStringCharacterArray.every(function (character) {
+                return Alphabet.includes(character);
+            })
+        }
+        while (usedWords.includes(words8LettersArray[randomIndex].word) || !validCharacters)
+        usedWords.push(words8LettersArray[randomIndex].word);
+        return words8LettersArray[randomIndex].word;
+    } catch (error) {
+        console.error(error);
     }
-    while (usedWords.includes(words8LettersArray[randomIndex].word) || !validCharacters)
-    usedWords.push(words8LettersArray[randomIndex].word);
-    return words8LettersArray[randomIndex].word;
 }
 
 /**Generates an array of partial URLs for forthcoming fetch requests,
