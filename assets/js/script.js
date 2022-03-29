@@ -265,6 +265,11 @@ async function random8LetterWordSelector() {
     return words8LettersArray[randomIndex].word;
 }
 
+/**Generates an array of partial URLs for forthcoming fetch requests,
+ * one for each of the lengths of words ranging from 4 letters up to and including the length of the randomly 7/8 letter selected word.
+ * The future fetch requests are used to obtain the correct words lists. 
+ * @returns URL array
+ */
 async function urlGenerator() {
     let selectedWord;
     if (document.getElementById('seven').checked) {
