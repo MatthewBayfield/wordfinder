@@ -163,16 +163,26 @@ const words7Letters = random7Letter5000Words().then(function (result) {
 let usedWords = [];
 
 /**Selects a random 7 letter word from the 5000 7 letter random word array, that has not yet been selected as a starting word during the game session.
- *  Adds the selected word to the used word array, to prevent future duplication when another word is selected. 
+ *  Adds the selected word to the used word array, to prevent future duplication when another word is selected. Also filters out any word containing spaces or characters not
+ * contained in the standard alphabet.
  * @returns a random 7 letter word
  */
-async function random7letterWordSelector() {
+async function random7LetterWordSelector() {
     let words7LettersArray = await words7Letters;
-    let randomIndex = Math.random() * words7LettersArray.length;
+    let randomIndex = Math.floor(Math.random() * words7LettersArray.length);
+    let selectedStringCharacterArray = [];
+    const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     do {
+        selectedStringCharacterArray = [];
         randomIndex = Math.floor(Math.random() * words7LettersArray.length);
+        for (let character of words7LettersArray[randomIndex].word) {
+            selectedStringCharacterArray.push(character);
+        }
+        validCharacters = selectedStringCharacterArray.every(function (character) {
+            return Alphabet.includes(character);
+        })
     }
-    while (usedWords.includes(words7LettersArray[randomIndex].word))
+    while (usedWords.includes(words7LettersArray[randomIndex].word) || !validCharacters)
     usedWords.push(words7LettersArray[randomIndex].word);
     return words7LettersArray[randomIndex].word;
 }
