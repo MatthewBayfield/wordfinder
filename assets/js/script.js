@@ -327,3 +327,28 @@ async function correctWordListFetcher(url) {
     }
 
 }
+
+/** Takes as a parameter an unfiltered array of word containing objects, and returns a filtered subset of the same array, where objects not containing a word definition
+ * property are filtered out.
+ * 
+ * @param {response<array>} retrievedWords - an unfiltered array of word containing objects
+ * @returns filteredWordarray
+ */
+async function noDefinitionWordFilter(retrievedWords) {
+    try {
+        let filteredWordArray = [];
+        let unfilteredWordArray = await retrievedWords;
+        if (unfilteredWordArray === undefined) {
+            throw new Error('propagated error from input parameter');
+        }
+        for (let i = 0; i < unfilteredWordArray.length; i++) {
+            let word = unfilteredWordArray[i];
+            if (word.defs != undefined) {
+                filteredWordArray.push(word);
+            }
+        }
+        return filteredWordArray;
+    } catch (error) {
+        console.error(error);
+    }
+}
