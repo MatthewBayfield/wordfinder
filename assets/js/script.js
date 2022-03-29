@@ -130,7 +130,7 @@ async function sevenLetter1000Words(letter) {
  *  with each set containing words beginning with a single random letter.
  * @returns  random7Letter5000WordArray
  */
- async function random7Letter5000Words() {
+async function random7Letter5000Words() {
     try {
         let partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
         let randomSetOf5Letters = new Set();
@@ -150,4 +150,29 @@ async function sevenLetter1000Words(letter) {
     } catch (error) {
         console.error(error);
     }
+}
+
+// Assigns a constant variable to the generated random 5000 7 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
+//and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
+// only have to be performed once when the page  initially loads.
+const words7Letters = random7Letter5000Words().then(function (result) {
+    return result;
+})
+
+// Used words array to keep track of the starting words already used in a gaming session, to prevent duplication. Words will be added to the array as they are used.
+let usedWords = [];
+
+/**Selects a random 7 letter word from the 5000 7 letter random word array, that has not yet been selected as a starting word during the game session.
+ *  Adds the selected word to the used word array, to prevent future duplication when another word is selected. 
+ * @returns a random 7 letter word
+ */
+async function random7letterWordSelector() {
+    let words7LettersArray = await words7Letters;
+    let randomIndex = Math.random() * words7LettersArray.length;
+    do {
+        randomIndex = Math.floor(Math.random() * words7LettersArray.length);
+    }
+    while (usedWords.includes(words7LettersArray[randomIndex].word))
+    usedWords.push(words7LettersArray[randomIndex].word);
+    return words7LettersArray[randomIndex].word;
 }
