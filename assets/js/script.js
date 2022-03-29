@@ -168,23 +168,30 @@ let usedWords = [];
  * @returns a random 7 letter word
  */
 async function random7LetterWordSelector() {
-    let words7LettersArray = await words7Letters;
-    let randomIndex = Math.floor(Math.random() * words7LettersArray.length);
-    let selectedStringCharacterArray = [];
-    const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    do {
-        selectedStringCharacterArray = [];
-        randomIndex = Math.floor(Math.random() * words7LettersArray.length);
-        for (let character of words7LettersArray[randomIndex].word) {
-            selectedStringCharacterArray.push(character);
+    try {
+        let words7LettersArray = await words7Letters;
+        if (words7LettersArray === undefined) {
+            throw new Error('propagated error from called function');
         }
-        validCharacters = selectedStringCharacterArray.every(function (character) {
-            return Alphabet.includes(character);
-        })
+        let randomIndex = Math.floor(Math.random() * words7LettersArray.length);
+        let selectedStringCharacterArray = [];
+        const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        do {
+            selectedStringCharacterArray = [];
+            randomIndex = Math.floor(Math.random() * words7LettersArray.length);
+            for (let character of words7LettersArray[randomIndex].word) {
+                selectedStringCharacterArray.push(character);
+            }
+            validCharacters = selectedStringCharacterArray.every(function (character) {
+                return Alphabet.includes(character);
+            })
+        }
+        while (usedWords.includes(words7LettersArray[randomIndex].word) || !validCharacters)
+        usedWords.push(words7LettersArray[randomIndex].word);
+        return words7LettersArray[randomIndex].word;
+    } catch (error) {
+        console.error(error);
     }
-    while (usedWords.includes(words7LettersArray[randomIndex].word) || !validCharacters)
-    usedWords.push(words7LettersArray[randomIndex].word);
-    return words7LettersArray[randomIndex].word;
 }
 
 /**Generates an array of single-word containing objects, producing upto 1000 8 Letter words beginnning with the letter submitted as a parameter. 
