@@ -316,7 +316,7 @@ async function urlGenerator() {
  */
 async function correctWordListFetcher(url) {
     try {
-        let retrievedWords = await fetch(`https://api.datamuse.com/words${url}&md=df&max=1000`);
+        let retrievedWords = await fetch(`https://api.datamuse.com/words?${url}&md=df&max=1000`);
         if (!retrievedWords.ok) {
             throw new Error('HTTP error');
         }
