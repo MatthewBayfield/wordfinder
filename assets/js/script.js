@@ -191,7 +191,7 @@ async function random7LetterWordSelector() {
  * @param {string} letter - all words will begin with this letter
  * @returns wordArray 
  */
- async function eightLetter1000Words(letter) {
+async function eightLetter1000Words(letter) {
     //Words obtained using the datamuse API via the fetch API
     try {
         let wordArray = await fetch(`https://api.datamuse.com/words?sp=${letter}???????&md=f&max=1000`);
@@ -263,4 +263,22 @@ async function random8LetterWordSelector() {
     while (usedWords.includes(words8LettersArray[randomIndex].word) || !validCharacters)
     usedWords.push(words8LettersArray[randomIndex].word);
     return words8LettersArray[randomIndex].word;
+}
+
+async function urlGenerator() {
+    let selectedWord;
+    if (document.getElementById('seven').checked) {
+        selectedWord = await random7LetterWordSelector();
+    } else {
+        selectedWord = await random8LetterWordSelector();
+    }
+    let urls = [];
+    for (i = 4; i <= selectedWord.length; i++) {
+        let q = "?";
+        let url = "";
+        q = q.repeat(i)
+        url = `sp=${q},*%2B${selectedWord}`;
+        urls.push(url);
+    }
+    return urls;
 }
