@@ -186,3 +186,81 @@ async function random7LetterWordSelector() {
     usedWords.push(words7LettersArray[randomIndex].word);
     return words7LettersArray[randomIndex].word;
 }
+
+/**Generates an array of single-word containing objects, producing upto 1000 8 Letter words beginnning with the letter submitted as a parameter. 
+ * @param {string} letter - all words will begin with this letter
+ * @returns wordArray 
+ */
+ async function eightLetter1000Words(letter) {
+    //Words obtained using the datamuse API via the fetch API
+    try {
+        let wordArray = await fetch(`https://api.datamuse.com/words?sp=${letter}???????&md=f&max=1000`);
+        if (!wordArray.ok) {
+            throw new Error('HTTP error');
+        }
+        wordArray = await wordArray.json();
+        return wordArray;
+    } catch (error) {
+        console.error(error);
+        alert('Sorry there seems to be a problem, please try again later.');
+    }
+}
+
+/** Generates an array of upto 5000 8 Letter word containing objects, consisting of 5 sets of upto 1000 words,
+ *  with each set containing words beginning with a single random letter.
+ * @returns  random8Letter5000WordArray
+ */
+async function random8Letter5000Words() {
+    try {
+        let partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
+        let randomSetOf5Letters = new Set();
+        let random8Letter5000WordArray = [];
+        while (randomSetOf5Letters.size < 5) {
+            let randomIndex = Math.floor(Math.random() * 23);
+            randomSetOf5Letters.add(partialAlphabet[randomIndex]);
+        }
+        for (letter of randomSetOf5Letters) {
+            let batch = await eightLetter1000Words(letter);
+            if (batch === undefined) {
+                throw new Error('propagated error from called function');
+            }
+            random8Letter5000WordArray = random8Letter5000WordArray.concat(batch);
+        }
+        return random8Letter5000WordArray;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Assigns a constant variable to the generated random 5000 8 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
+//and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
+// only have to be performed once when the page  initially loads.
+const words8Letters = random8Letter5000Words().then(function (result) {
+    return result;
+})
+
+
+/**Selects a random 8 letter word from the 5000 8 letter random word array, that has not yet been selected as a starting word during the game session.
+ *  Adds the selected word to the used word array, to prevent future duplication when another word is selected. Also filters out any word containing spaces or characters not
+ * contained in the standard alphabet.
+ * @returns a random 8 letter word
+ */
+async function random8LetterWordSelector() {
+    let words8LettersArray = await words8Letters;
+    let randomIndex = Math.floor(Math.random() * words8LettersArray.length);
+    let selectedStringCharacterArray = [];
+    const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    do {
+        selectedStringCharacterArray = [];
+        randomIndex = Math.floor(Math.random() * words8LettersArray.length);
+        for (let character of words8LettersArray[randomIndex].word) {
+            selectedStringCharacterArray.push(character);
+        }
+        validCharacters = selectedStringCharacterArray.every(function (character) {
+            return Alphabet.includes(character);
+        })
+    }
+    while (usedWords.includes(words8LettersArray[randomIndex].word) || !validCharacters)
+    usedWords.push(words8LettersArray[randomIndex].word);
+    return words8LettersArray[randomIndex].word;
+}
