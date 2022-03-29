@@ -308,3 +308,22 @@ async function urlGenerator() {
         console.error(error);
     }
 }
+
+/**Generates an array of words,  resulting from a fetch request using the partial URL supplied as a parameter
+ * 
+ * @param  {string} url - this url fragment is inserted into another url to give a full url used for the fetch request
+ * @returns retrievedWords - an array of word containing objects
+ */
+async function correctWordListFetcher(url) {
+    try {
+        let retrievedWords = await fetch(`https://api.datamuse.com/words${url}&md=df&max=1000`);
+        if (!retrievedWords.ok) {
+            throw new Error('HTTP error');
+        }
+        retrievedWords = await retrievedWords.json();
+        return retrievedWords;
+    } catch (error) {
+        console.error(error)
+    }
+
+}
