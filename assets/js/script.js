@@ -285,19 +285,26 @@ async function random8LetterWordSelector() {
  * @returns URL array
  */
 async function urlGenerator() {
-    let selectedWord;
-    if (document.getElementById('seven').checked) {
-        selectedWord = await random7LetterWordSelector();
-    } else {
-        selectedWord = await random8LetterWordSelector();
+    try {
+        let selectedWord;
+        if (document.getElementById('seven').checked) {
+            selectedWord = await random7LetterWordSelector();
+        } else {
+            selectedWord = await random8LetterWordSelector();
+        }
+        if (selectedWord === undefined) {
+            throw new Error('propagated error from called function');
+        }
+        let urls = [];
+        for (i = 4; i <= selectedWord.length; i++) {
+            let q = "?";
+            let url = "";
+            q = q.repeat(i)
+            url = `sp=${q},*%2B${selectedWord}`;
+            urls.push(url);
+        }
+        return urls;
+    } catch (error) {
+        console.error(error);
     }
-    let urls = [];
-    for (i = 4; i <= selectedWord.length; i++) {
-        let q = "?";
-        let url = "";
-        q = q.repeat(i)
-        url = `sp=${q},*%2B${selectedWord}`;
-        urls.push(url);
-    }
-    return urls;
 }
