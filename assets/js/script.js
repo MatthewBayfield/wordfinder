@@ -378,3 +378,27 @@ async function correctWordListFilterandConcatenate() {
         console.error(error);
     }
 }
+
+/** Checks that a word from the correct word list array only contains the same number of a given letter as are found in the random 7/8 letter parent word.
+ * 
+ * @param {promise<object>} correctWord - A word containing object from the correct word array
+ * @param {string} parentWord - The starting random 7/8 letter word
+ * @returns A boolean, that is false when the correct word contains different numbers of a given a letter compared to the parent word
+ */
+function letterChecker(correctWord, parentWord) {
+    try {
+        let j = 0;
+        for (let letter of correctWord.word) {
+            if (parentWord.includes(letter)) {
+                parentWord = parentWord.slice(0, parentWord.indexOf(letter)) + parentWord.slice(parentWord.indexOf(letter) + 1);
+                ++j;
+            } else {
+                break;
+            }
+        }
+        return (j === correctWord.word.length);
+    } catch (error) {
+        console.error(error);
+    }
+
+}
