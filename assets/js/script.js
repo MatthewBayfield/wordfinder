@@ -424,3 +424,22 @@ async function letterCheckerFilter() {
         console.error(error);
     }
 }
+
+/** Generates an array of google books Ngrams frequencies associated with each word in the filtered correct word array. It first extracts the frequency label and
+ *  number from each word, and then just the actual number.
+ * @param {promise<array>} unextractedarray 
+ * @returns extractedWordFrequencyArray
+ */
+function wordFrequencyArrayExtractor(unextractedarray) {
+    try {
+        let extractedWordFrequencyArray = [];
+        for (let entry of unextractedarray) {
+            let extractedWordFrequency = entry.tags[0];
+            let extractedWordFrequencyNumber = extractedWordFrequency.slice(2);
+            extractedWordFrequencyArray.push(extractedWordFrequencyNumber);
+        }
+        return extractedWordFrequencyArray;
+    } catch (error) {
+        console.error(error);
+    }
+}
