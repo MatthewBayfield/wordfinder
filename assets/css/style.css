@@ -109,11 +109,13 @@ h1+p {
 
 #game_settings {
     position: relative;
+    text-align: center;
 }
 
 #game_settings>div {
     position: absolute;
     width: 95%;
+    height: 200%;
     background-color: #33047F;
     top: 0;
     left: 2.5%;
@@ -123,6 +125,12 @@ h1+p {
     close and game settings buttons*/
     z-index: 1;
     box-sizing: border-box;
+    visibility: hidden;
+}
+
+#settings_button {
+    position: relative;
+    bottom: 0.5rem;
 }
 
 #game_settings>div>div {
