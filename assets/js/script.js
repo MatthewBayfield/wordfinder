@@ -403,15 +403,25 @@ function letterChecker(correctWord, parentWord) {
 
 }
 
+
+/** Filters out the words from the correct word list array that return a false boolean when entered as a parameter in the letter checker function.
+ * Consequently the resultant word array, features only words with the same number of a given letter as the randomly selected starting word.
+ * @returns filteredCorrectWordArray 
+ */
 async function letterCheckerFilter() {
-    console.log(usedWords);
-    let filteredCorrectWordArray = [];
-    let currentCorrectWordArray = await correctWordListFilterandConcatenate();
-    for (let correctWord of currentCorrectWordArray) {
-        if (letterChecker(correctWord, usedWords[usedWords.length - 1])) {
-            filteredCorrectWordArray.push(correctWord);
+    try {
+        let filteredCorrectWordArray = [];
+        let currentCorrectWordArray = await correctWordListFilterandConcatenate();
+        if (currentCorrectWordArray === undefined) {
+            throw new Error('propagated error from called function');
         }
+        for (let correctWord of currentCorrectWordArray) {
+            if (letterChecker(correctWord, usedWords[usedWords.length - 1])) {
+                filteredCorrectWordArray.push(correctWord);
+            }
+        }
+        return filteredCorrectWordArray;
+    } catch (error) {
+        console.error(error);
     }
-    console.log(filteredCorrectWordArray);
-    return filteredCorrectWordArray;
 }
