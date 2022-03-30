@@ -152,6 +152,22 @@ h1+p {
     height: 2rem;
 }
 
+.tile {
+    display: inline-block;
+    border: 0.1rem solid white;
+    width: 2rem;
+    height: 2rem;
+    margin: 0.1rem;
+    vertical-align: middle;
+}
+
+.tile>p {
+    height: fit-content;
+    padding-top: 15%;
+}
+
+
+
 #main_game_area h3 {
     margin: 0 auto;
 }
@@ -165,15 +181,18 @@ h1+p {
 #gameplay_area>div {
     flex: 1 auto;
     text-align: center;
+    padding-top: 3%;
+    box-sizing: border-box;
 }
 
 #tile_holder_container {
     position: relative;
-    top: 35%;
+    top: 28%;
 }
+
 #reset_button_container {
     position: relative;
-    top: 35%;
+    top: 28%;
 }
 
 #main_game_area>h2 {
@@ -181,7 +200,7 @@ h1+p {
     margin: 0.8rem auto 0.6rem;
 }
 
-#main_game_area>h2 + button {
+#main_game_area>h2+button {
     width: fit-content;
     margin: 0 auto;
     display: block;
