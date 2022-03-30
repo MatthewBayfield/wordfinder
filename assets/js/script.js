@@ -490,7 +490,8 @@ async function correctWordArrayFilterandSorter() {
     }
 }
 
-
+/** Creates the unplaced letter tiles in the HTML gameplay area, for the letters in the current randomly selected 7/8 letter starting word
+ */
 async function createLetterTiles() {
     try {
         await correctWordArrayFilterandSorter();
