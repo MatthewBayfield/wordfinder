@@ -107,12 +107,30 @@ h1+p {
     margin-bottom: 0.1rem;
 }
 
+#game_settings {
+    position: relative;
+}
+
 #game_settings>div {
+    position: absolute;
+    width: 95%;
+    background-color: #33047F;
+    top: 0;
+    left: 2.5%;
+    text-align: center;
+    border: solid 0.1rem #99FCFF;
+    /*Z-index used to ensure window content displays in front, when the window is open. The window is opened and closed using the
+    close and game settings buttons*/
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+#game_settings>div>div {
     display: flex;
     padding: 0 0.3rem;
 }
 
-#game_settings>div>div {
+#game_settings>div>div>div {
     flex: 1 auto;
 }
 
