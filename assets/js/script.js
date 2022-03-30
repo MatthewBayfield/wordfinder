@@ -2,12 +2,12 @@
 
 let howToPlayWindow = document.getElementById('how_to_play_window');
 let closeButton = howToPlayWindow.children[2];
-closeButton.addEventListener('click', function (event) {
+closeButton.addEventListener('click', function () {
     howToPlayWindow = document.getElementById('how_to_play_window');
     howToPlayWindow.style.display = 'none';
 })
 
-document.getElementById('game_instructions').addEventListener('click', function (event) {
+document.getElementById('game_instructions').addEventListener('click', function () {
     howToPlayWindow = document.getElementById('how_to_play_window');
     howToPlayWindow.style.display = 'block';
 })
@@ -16,11 +16,11 @@ document.getElementById('game_instructions').addEventListener('click', function 
 
 let allButtons = document.getElementsByTagName('button');
 for (let button of allButtons) {
-    button.addEventListener('mouseenter', function (event) {
+    button.addEventListener('mouseenter', function () {
         this.style.border = "solid 0.1rem gold";
     })
 
-    button.addEventListener('mouseleave', function (event) {
+    button.addEventListener('mouseleave', function () {
         this.removeAttribute('style');
     })
 }
@@ -38,7 +38,7 @@ let timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
 
 
 //start button click event listener. Changes button to a quit button, and a quit button to start button. Triggers start game sound and starts/resets clock.
-document.getElementById('main_game_area').children[1].addEventListener('click', function (event) {
+document.getElementById('main_game_area').children[1].addEventListener('click', function () {
     if (this.textContent === 'Start') {
         this.textContent = 'Quit';
         if (soundMode()) {
@@ -70,10 +70,15 @@ function setTimer() {
 
 }
 
-// Event listener to call the setTimer function when any of the timer radio inputs are checked.
+// Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame. This
+//is done by simulating a quit button click event.
 for (let input of document.querySelectorAll('[name=timer]')) {
-    input.addEventListener('click', function (event) {
+    input.addEventListener('click', function () {
         setTimer();
+        if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
+            document.getElementById('main_game_area').children[1].click();
+        }
+
     })
 }
 
