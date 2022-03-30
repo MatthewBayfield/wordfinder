@@ -110,14 +110,21 @@ function timer_Adjuster() {
 
 }
 
-// Event listeners that adjust the number of tile holders by adding and removing an eighth holder div element when the seven or eight letter radio input is checked
+// Event listeners that adjust the number of tile holders by adding and removing an eighth holder div element when the seven or eight letter radio input is checked. They also
+//simulate a quit button click event, if a different radio input is checked midgame.
 
 document.getElementById('eight').addEventListener('click', function () {
     document.getElementById('eighth_tile_holder').style.setProperty('display', 'inline-block');
+    if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
+        document.getElementById('main_game_area').children[1].click();
+    }
 })
 
 document.getElementById('seven').addEventListener('click', function () {
     document.getElementById('eighth_tile_holder').style.setProperty('display', 'none');
+    if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
+        document.getElementById('main_game_area').children[1].click();
+    }
 })
 
 // Event listeners that open and close the game settings window, when clcicking the respective close or game settings buttons
