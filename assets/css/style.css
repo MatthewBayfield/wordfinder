@@ -114,23 +114,29 @@ h1+p {
 
 #game_settings>div {
     position: absolute;
+    top: 0;
+    left: 2.5%;
     width: 95%;
     height: 200%;
     background-color: #33047F;
-    top: 0;
-    left: 2.5%;
-    text-align: center;
     border: solid 0.1rem #99FCFF;
     /*Z-index used to ensure window content displays in front, when the window is open. The window is opened and closed using the
     close and game settings buttons*/
+    text-align: center;
     z-index: 1;
     box-sizing: border-box;
     visibility: hidden;
+    padding-top: 1rem;
 }
 
 #settings_button {
     position: relative;
     bottom: 0.5rem;
+}
+
+#game_settings>div>button {
+    position: relative;
+    top: 20%;
 }
 
 #game_settings>div>div {
