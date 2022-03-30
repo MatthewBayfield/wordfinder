@@ -443,3 +443,18 @@ function wordFrequencyArrayExtractor(unextractedarray) {
         console.error(error);
     }
 }
+
+/** Sorts a word frequency array provided as a parameter in descending order by frequency.
+ * @param {promise<array>} extractedWordFrequencyArray 
+ * @returns extractedWordFrequencyArray - the same parameter array but sorted by frequency in descending order
+ */
+function sortByWordFrequency(extractedWordFrequencyArray) {
+    try {
+        extractedWordFrequencyArray.sort(function (a, b) {
+            return b - a
+        });
+        return extractedWordFrequencyArray;
+    } catch (error) {
+        console.error(error);
+    }
+}
