@@ -458,3 +458,33 @@ function sortByWordFrequency(extractedWordFrequencyArray) {
         console.error(error);
     }
 }
+
+/** Fully filters and sorts by their associated google books Ngram word frequency, the word containing objects in the generated correct word array,
+ *  itself associated with the random 7/8 letter starting word.
+ * @returns fullySortedFilteredCorrectWordArray
+ */
+async function correctWordArrayFilterandSorter() {
+    try {
+        let unextractedCorrectWordArray = await letterCheckerFilter();
+        if (unextractedCorrectWordArray === undefined) {
+            throw new Error('propagated error from called function');
+        }
+        let extractedWordFrequencyArray = wordFrequencyArrayExtractor(unextractedCorrectWordArray);
+        let = fullySortedFilteredCorrectWordArray = [];
+        let sortedExtractedWordFrequencyArray = await sortByWordFrequency(extractedWordFrequencyArray);
+        if (sortedExtractedWordFrequencyArray === undefined) {
+            throw new Error('propagated error from called function');
+        }
+        let unsortedExtractedWordFrequencyArray = wordFrequencyArrayExtractor(unextractedCorrectWordArray);
+        for (let entry of unsortedExtractedWordFrequencyArray) {
+            for (let i = 0; i < unsortedExtractedWordFrequencyArray.length; i++) {
+                if (entry === sortedExtractedWordFrequencyArray[i]) {
+                    fullySortedFilteredCorrectWordArray[i] = unextractedCorrectWordArray[unsortedExtractedWordFrequencyArray.indexOf(entry)];
+                }
+            }
+        }
+        return fullySortedFilteredCorrectWordArray;
+    } catch (error) {
+        console.error(error);
+    }
+}
