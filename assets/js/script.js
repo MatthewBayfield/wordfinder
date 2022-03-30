@@ -415,5 +415,3 @@ async function letterCheckerFilter() {
     console.log(filteredCorrectWordArray);
     return filteredCorrectWordArray;
 }
-
-letterCheckerFilter();
