@@ -460,7 +460,8 @@ function sortByWordFrequency(extractedWordFrequencyArray) {
 }
 
 /** Fully filters and sorts by their associated google books Ngram word frequency, the word containing objects in the generated correct word array,
- *  itself associated with the random 7/8 letter starting word.
+ *  itself associated with the random 7/8 letter starting word. Calling this function indirectly calls the random7/8LetterWordSelector function,
+ *  and generates the unfiltered and unsorted correct word array for this selected word, which is then fully sorted and filtered.
  * @returns fullySortedFilteredCorrectWordArray
  */
 async function correctWordArrayFilterandSorter() {
