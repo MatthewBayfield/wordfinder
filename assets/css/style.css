@@ -195,6 +195,10 @@ h1+p {
     top: 28%;
 }
 
+#eighth_tile_holder {
+    display: none;
+}
+
 #main_game_area>h2 {
     line-height: 1;
     margin: 0.8rem auto 0.6rem;
