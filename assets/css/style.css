@@ -87,7 +87,7 @@ h1+p {
     top: 0;
     left: 2.5%;
     width: 95%;
-    height: 200%;
+    height: 250%;
     background-color: #33047F;
     /*To be changed to display: none with JS when the close button is clicked*/
     display: block;
