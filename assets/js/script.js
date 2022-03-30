@@ -361,13 +361,13 @@ async function noDefinitionWordFilter(retrievedWords) {
 async function correctWordListFilterandConcatenate() {
     try {
         urls = await urlGenerator();
-        if (unfilteredWordArray === undefined) {
+        if (urls === undefined) {
             throw new Error('propagated error from called function');
         }
         let concatenatedCorrectWordListArray = [];
         for (let url of urls) {
             filteredWordArrayToConcatenate = await noDefinitionWordFilter(correctWordListFetcher(url));
-            if (unfilteredWordArray === undefined) {
+            if (filteredWordArrayToConcatenate === undefined) {
                 throw new Error('propagated error from called function');
             }
             concatenatedCorrectWordListArray = concatenatedCorrectWordListArray.concat(filteredWordArrayToConcatenate);
@@ -402,3 +402,18 @@ function letterChecker(correctWord, parentWord) {
     }
 
 }
+
+async function letterCheckerFilter() {
+    console.log(usedWords);
+    let filteredCorrectWordArray = [];
+    let currentCorrectWordArray = await correctWordListFilterandConcatenate();
+    for (let correctWord of currentCorrectWordArray) {
+        if (letterChecker(correctWord, usedWords[usedWords.length - 1])) {
+            filteredCorrectWordArray.push(correctWord);
+        }
+    }
+    console.log(filteredCorrectWordArray);
+    return filteredCorrectWordArray;
+}
+
+letterCheckerFilter();
