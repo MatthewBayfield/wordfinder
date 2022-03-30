@@ -489,3 +489,22 @@ async function correctWordArrayFilterandSorter() {
         console.error(error);
     }
 }
+
+
+async function createLetterTiles() {
+    try {
+        await correctWordArrayFilterandSorter();
+        let randomStartingWord = usedWords[usedWords.length - 1];
+        for (let letter of randomStartingWord) {
+            let tile = document.createElement('div');
+            tile.setAttribute('class', 'tile');
+            tileParagraph = document.createElement('p');
+            tileParagraph.textContent = letter;
+            tile.appendChild(tileParagraph);
+            document.getElementById('gameplay_area').children[0].appendChild(tile);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+}
