@@ -105,6 +105,16 @@ function timer_Adjuster() {
 
 }
 
+// Event listeners that adjust the number of tile holders by adding and removing an eighth holder div element when the seven or eight letter radio input is checked
+
+document.getElementById('eight').addEventListener('click', function() {
+    document.getElementById('eighth_tile_holder').style.setProperty('display', 'inline-block');
+})
+
+document.getElementById('seven').addEventListener('click', function() {
+    document.getElementById('eighth_tile_holder').style.setProperty('display', 'none');
+})
+
 // Game mechanics functions
 
 /**Generates an array of single-word containing objects, producing upto 1000 7 Letter words beginnning with the letter submitted as a parameter. 
