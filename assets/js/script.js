@@ -372,7 +372,6 @@ async function correctWordListFilterandConcatenate() {
             }
             concatenatedCorrectWordListArray = concatenatedCorrectWordListArray.concat(filteredWordArrayToConcatenate);
         }
-        console.log(concatenatedCorrectWordListArray);
         return concatenatedCorrectWordListArray;
     } catch (error) {
         console.error(error);
