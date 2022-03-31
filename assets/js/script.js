@@ -524,13 +524,44 @@ async function correctWordArrayFilterandSorter() {
     }
 }
 
+/**Takes as a parameter a random 7/8 letter starting word string, and randomly mixes up the letter order and returns the new letter order as a string
+ * 
+ * @param {string} randomStartingWord 
+ * @returns scrambledRandomStartingWord - a string containing the same letters as the parameter string but in a random order
+ */
+function scrambler(randomStartingWord) {
+    try {
+        const wordLength = randomStartingWord.length;
+        let length = randomStartingWord.length;
+        let indexArray = [];
+        for (let i = 0; i < wordLength; i++) {
+            indexArray.push(i);
+        }
+        let randomIndex;
+        let scrambledRandomStartingWord = "";
+        let letter;
+        do {
+            randomIndex = Math.floor(Math.random() * length);
+            letter = randomStartingWord[indexArray[randomIndex]];
+            scrambledRandomStartingWord += letter;
+            indexArray.splice(randomIndex, 1);
+            length -= 1;
+        } while (scrambledRandomStartingWord.length < wordLength)
+        return scrambledRandomStartingWord;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 /** Creates the unplaced letter tiles in the HTML gameplay area, for the letters in the current randomly selected 7/8 letter starting word
  */
 async function createLetterTiles() {
     try {
         await correctWordArrayFilterandSorter();
         let randomStartingWord = usedWords[usedWords.length - 1];
-        for (let letter of randomStartingWord) {
+        let scrambledRandomStartingWord = scrambler(randomStartingWord);
+        for (let letter of scrambledRandomStartingWord) {
             let tile = document.createElement('div');
             tile.setAttribute('class', 'tile');
             tileParagraph = document.createElement('p');
@@ -543,3 +574,5 @@ async function createLetterTiles() {
     }
 
 }
+
+createLetterTiles();
