@@ -90,28 +90,32 @@ for (let input of document.querySelectorAll('[name=timer]')) {
  * also removed, and the timeup sound plays if sound is enabled, and the quit button becomes a start button again.
  */
 function timerAdjuster() {
-    let timeInSeconds = (Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(0, 2))) * 60 +
-        Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(3, 5));
-    if (timeInSeconds > 0) {
-        timeInSeconds -= 1;
+    try {
+        let timeInSeconds = (Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(0, 2))) * 60 +
+            Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(3, 5));
+        if (timeInSeconds > 0) {
+            timeInSeconds -= 1;
 
-        let minutes = Math.floor(timeInSeconds / 60);
-        let timerSeconds = timeInSeconds % 60;
-        if (`${timerSeconds}`.length === 2) {
-            let strTime = `0` + `${minutes}` + `:` + `${timerSeconds}`;
-            document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
+            let minutes = Math.floor(timeInSeconds / 60);
+            let timerSeconds = timeInSeconds % 60;
+            if (`${timerSeconds}`.length === 2) {
+                let strTime = `0` + `${minutes}` + `:` + `${timerSeconds}`;
+                document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
+            } else {
+                let strTime = `0` + `${minutes}` + `:` + `0` + `${timerSeconds}`;
+                document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
+            }
         } else {
-            let strTime = `0` + `${minutes}` + `:` + `0` + `${timerSeconds}`;
-            document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
+            clearInterval(timer);
+            setTimer();
+            document.getElementById('main_game_area').children[1].textContent = 'Start';
+            if (soundMode()) {
+                timeUpSound.play();
+            }
+            removeLetterTiles();
         }
-    } else {
-        clearInterval(timer);
-        setTimer();
-        document.getElementById('main_game_area').children[1].textContent = 'Start';
-        if (soundMode()) {
-            timeUpSound.play();
-        }
-        removeLetterTiles();
+    } catch (error) {
+        console.error(error);
     }
 
 }
