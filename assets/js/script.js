@@ -37,7 +37,9 @@ let gameStartSound = new Audio("assets/audio/game_start.mp3");
 let timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
 
 
-//start button click event listener. Changes button to a quit button, and a quit button to start button. Triggers start game sound and starts/resets clock.
+//start button click event listener. Changes button to a quit button, and a quit button to start button when clicked. Clicking the start button also triggers the
+// start game sound for enabled sound, and starts the clock. It also adds the random starting word letter tiles.
+// Clicking the quit button resets the clock and removes the unplaced letter tiles.
 document.getElementById('main_game_area').children[1].addEventListener('click', function () {
     if (this.textContent === 'Start') {
         this.textContent = 'Quit';
@@ -47,11 +49,13 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         if (!(document.getElementById('no_timer').checked)) {
             timer = setInterval(timer_Adjuster, 1000);
         }
+        createLetterTiles();
 
     } else {
         this.textContent = 'Start';
         clearInterval(timer);
         setTimer();
+        removeLetterTiles();
     }
 })
 
