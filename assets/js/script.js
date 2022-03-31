@@ -137,7 +137,7 @@ document.getElementById('seven').addEventListener('click', function () {
     }
 })
 
-// Event listeners that open and close the game settings window, when clcicking the respective close or game settings buttons
+// Event listeners that open and close the game settings window, when clicking the respective close or game settings buttons
 
 document.getElementById('game_settings').children[1].addEventListener('click', function () {
     const gameSettingsWindow = document.getElementById('game_settings').children[2];
@@ -581,6 +581,7 @@ async function createLetterTiles() {
             document.getElementById('gameplay_area').children[0].appendChild(tile);
         }
         createLetterTileEventListeners();
+        createLetterTileHolderEventListeners();
     } catch (error) {
         console.error(error);
     }
@@ -628,4 +629,28 @@ function createLetterTileEventListeners() {
         console.error(error);
 
     }
+}
+
+/** When called, creates click event listeners for the letter tile holders. When the event is triggered the innerHTML of the currently selected letter tile, stored in the
+ * selectedTileCopy variable is set as the innerHTML of the clicked tile holder div. The selectedTileCopy variable is then reassigned to be undefined,
+ *  and the selected letter tile div hidden.
+ * 
+ */
+function createLetterTileHolderEventListeners() {
+    try {
+        let tileHolders = document.getElementsByClassName('tile_holder');
+        for (let tileHolder of tileHolders) {
+            tileHolder.addEventListener('click', function () {
+                if (selectedTileCopy !== undefined) {
+                    this.innerHTML = selectedTileCopy.innerHTML;
+                    selectedTileCopy.style.setProperty('visibility', 'hidden');
+                    selectedTileCopy = undefined;
+                }
+            })
+        }
+    } catch (error) {
+        console.error(error);
+
+    }
+
 }
