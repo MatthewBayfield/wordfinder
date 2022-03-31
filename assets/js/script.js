@@ -556,8 +556,7 @@ function scrambler(randomStartingWord) {
 
 /** Creates the unplaced letter tiles in the HTML gameplay area, for the letters in the current randomly selected 7/8 letter starting word.
  * The letters contained within the tiles are placed in a random order.
- * 
- */ 
+ */
 async function createLetterTiles() {
     try {
         await correctWordArrayFilterandSorter();
@@ -574,5 +573,23 @@ async function createLetterTiles() {
     } catch (error) {
         console.error(error);
     }
+
+}
+
+/** Removes the unplaced random starting word letter tiles from the HTML document
+ * 
+ */
+function removeLetterTiles() {
+    try {
+        let tiles = document.getElementById('gameplay_area').children[0].children;
+        if (!(tiles.length === 0)) {
+            while (!(tiles.length === 0)) {
+                tiles[0].remove();
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
 
 }
