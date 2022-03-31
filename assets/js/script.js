@@ -580,6 +580,7 @@ async function createLetterTiles() {
             tile.appendChild(tileParagraph);
             document.getElementById('gameplay_area').children[0].appendChild(tile);
         }
+        createLetterTileEventListeners();
     } catch (error) {
         console.error(error);
     }
@@ -600,6 +601,31 @@ function removeLetterTiles() {
     } catch (error) {
         console.error(error);
     }
+}
 
+// A variable to act as a transient copy of a selected letter tile's HTML content
+let selectedTileCopy;
 
+/**When called creates click event listeners for generated letter tiles. A click event triggers a border color change to indicate tile selection,
+ *  and removes any other previous event effects applied to the other tiles not currently selected. An event also sets a variable to become a copy of the clicked letter tile
+ * HTML content. 
+ */
+function createLetterTileEventListeners() {
+    try {
+        let letterTiles = document.getElementsByClassName('tile');
+        for (let letterTile of letterTiles) {
+            letterTile.addEventListener('click', function () {
+                selectedTileCopy = this;
+                this.style.borderColor = 'gold';
+                for (let OtherLetterTile of letterTiles) {
+                    if (this !== OtherLetterTile) {
+                        OtherLetterTile.style.removeProperty('border-color');
+                    }
+                }
+            })
+        }
+    } catch (error) {
+        console.error(error);
+
+    }
 }
