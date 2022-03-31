@@ -47,7 +47,7 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
             gameStartSound.play();
         }
         if (!(document.getElementById('no_timer').checked)) {
-            timer = setInterval(timer_Adjuster, 1000);
+            timer = setInterval(timerAdjuster, 1000);
         }
         createLetterTiles();
 
@@ -86,9 +86,10 @@ for (let input of document.querySelectorAll('[name=timer]')) {
     })
 }
 
-/**Gives the timer its timer functionality: decreases by 1 every 1s until 0 when it resets.
+/**Gives the timer its timer functionality: decreases by 1 every time it is called until 0 when it resets. When the timer runs out, the random starting word letter times are
+ * also removed, and the timeup sound plays if sound is enabled, and the quit button becomes a start button again.
  */
-function timer_Adjuster() {
+function timerAdjuster() {
     let timeInSeconds = (Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(0, 2))) * 60 +
         Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(3, 5));
     if (timeInSeconds > 0) {
@@ -110,6 +111,7 @@ function timer_Adjuster() {
         if (soundMode()) {
             timeUpSound.play();
         }
+        removeLetterTiles();
     }
 
 }
