@@ -149,6 +149,26 @@ document.getElementById('game_settings').children[2].children[1].addEventListene
     gameSettingsWindow.style.removeProperty('visibility');
 })
 
+// Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
+// by making them visible again.
+document.getElementById('reset_button_container').children[0].addEventListener('click', function() {
+    let start_button = document.getElementById('main_game_area').children[1];
+    let letterTiles = document.getElementsByClassName('tile');
+    if (start_button.textContent === 'Quit') {
+        tileHolders = document.getElementsByClassName('tile_holder');
+        for (let tileHolder of tileHolders) {
+            if (tileHolder.children.length !== 0) {
+                tileHolder.children[0].remove();
+
+            }
+        }
+        for (let letterTile of letterTiles) {
+            letterTile.style.removeProperty('visibility');
+            letterTile.style.removeProperty('border-color');
+        }
+    }
+})
+
 // Game mechanics functions
 
 /**Generates an array of single-word containing objects, producing upto 1000 7 Letter words beginnning with the letter submitted as a parameter. 
