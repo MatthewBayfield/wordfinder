@@ -241,3 +241,13 @@ h1+p {
     margin: 0 auto;
     display: block;
 }
+
+
+/* Sweetalert2 customClass styling*/
+.swal-title {
+    width: auto;
+}
+
+.swal-theme {
+    border: 0.2rem solid #ffd700 !important;
+}
