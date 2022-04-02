@@ -174,6 +174,15 @@ document.getElementById('reset_button_container').children[0].addEventListener('
     }
 })
 
+// A click event listener for the check word button, that calls the checkWord function to check whether a valid word has been submitted during a game.
+const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
+checkWordButton.addEventListener('click', function () {
+    let start_button = document.getElementById('main_game_area').children[1];
+    if (start_button.textContent === 'Quit') {
+        checkWord();
+    }
+})
+
 // Game mechanics functions
 
 /**Generates an array of single-word containing objects, producing upto 1000 7 Letter words beginnning with the letter submitted as a parameter. 
@@ -764,10 +773,3 @@ function checkWord() {
     }
 }
 
-const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
-checkWordButton.addEventListener('click', function () {
-    let start_button = document.getElementById('main_game_area').children[1];
-    if (start_button.textContent === 'Quit') {
-        checkWord();
-    }
-})
