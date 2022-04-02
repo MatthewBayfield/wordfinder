@@ -222,9 +222,7 @@ async function random7Letter5000Words() {
 // Assigns a constant variable to the generated random 5000 7 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
 //and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
 // only have to be performed once when the page  initially loads.
-const words7Letters = random7Letter5000Words().then(function (result) {
-    return result;
-})
+const words7Letters = random7Letter5000Words();
 
 // Used words array to keep track of the starting words already used in a gaming session, to prevent duplication. Words will be added to the array as they are used.
 let usedWords = [];
@@ -309,9 +307,7 @@ async function random8Letter5000Words() {
 // Assigns a constant variable to the generated random 5000 8 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
 //and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
 // only have to be performed once when the page  initially loads.
-const words8Letters = random8Letter5000Words().then(function (result) {
-    return result;
-})
+const words8Letters = random8Letter5000Words();
 
 
 /**Selects a random 8 letter word from the 5000 8 letter random word array, that has not yet been selected as a starting word during the game session.
