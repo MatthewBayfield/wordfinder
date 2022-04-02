@@ -35,6 +35,8 @@ function soundMode() {
 // sound effect audio objects variables.
 let gameStartSound = new Audio("assets/audio/game_start.mp3");
 let timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
+let correctWordSubmittedSound = new Audio("assets/audio/correct_word.mp3");
+let incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3")
 
 
 //start button click event listener. Changes button to a quit button, and a quit button to start button when clicked. Clicking the start button also triggers the
@@ -706,6 +708,9 @@ function checkWord() {
                     timer: '2000',
                     showConfirmButton: false
                 });
+                if (soundMode()) {
+                    correctWordSubmittedSound.play();
+                }
 
                 correct = true;
                 correctWordsGiven.push(submittedWord);
@@ -728,6 +733,9 @@ function checkWord() {
                     timer: '3000',
                     showConfirmButton: false
                 });
+                if (soundMode()) {
+                    incorrectWordSubmittedSound.play();
+                }
             } else {
                 Swal.fire({
                     title: 'INCORRECT!',
@@ -744,6 +752,9 @@ function checkWord() {
                     timer: '2000',
                     showConfirmButton: false
                 });
+                if (soundMode()) {
+                    incorrectWordSubmittedSound.play();
+                }
             }
         }
         let resetTilesButton = document.getElementById('reset_button_container').children[0];
