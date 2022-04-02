@@ -42,7 +42,7 @@ let incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3")
 //start button click event listener. Changes button to a quit button, and a quit button to start button when clicked. Clicking the start button also triggers the
 // start game sound for enabled sound, and starts the clock. It also adds the random starting word letter tiles.
 // Clicking the quit button resets the clock and removes the unplaced letter tiles, and removes any letter tiles from the tile holders,
-// through a simulated reset tiles button click.
+// through a simulated reset tiles button click. The quit button when clicked also resets the current score and correct words counter.
 document.getElementById('main_game_area').children[1].addEventListener('click', function () {
     if (this.textContent === 'Start') {
         this.textContent = 'Quit';
@@ -61,6 +61,10 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         this.textContent = 'Start';
         clearInterval(timer);
         setTimer();
+        let currentScorecontainer = document.querySelectorAll(".sidebar")[1].children[0].querySelector('span');
+        currentScorecontainer.textContent='0';
+        let correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
+        correctWordCounterContainer.textContent = '0';
     }
 })
 
@@ -723,6 +727,7 @@ function checkWord() {
 
                 correct = true;
                 correctWordsGiven.push(submittedWord);
+                scoreAdjuster(submittedWord);
             }
         }
         if (!correct) {
@@ -768,7 +773,6 @@ function checkWord() {
         }
         let resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
-        scoreAdjuster(submittedWord);
     } catch (error) {
         console.error(error);
     }
