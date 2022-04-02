@@ -746,6 +746,8 @@ function checkWord() {
                 });
             }
         }
+        let resetTilesButton = document.getElementById('reset_button_container').children[0];
+        resetTilesButton.click();
     } catch (error) {
         console.error(error);
     }
