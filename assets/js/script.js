@@ -53,7 +53,7 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         createLetterTiles();
 
     } else {
-        let resetTilesButton= document.getElementById('reset_button_container').children[0];
+        let resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
         removeLetterTiles();
         this.textContent = 'Start';
@@ -154,7 +154,7 @@ document.getElementById('game_settings').children[2].children[1].addEventListene
 
 // Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
 // by making them visible again.
-document.getElementById('reset_button_container').children[0].addEventListener('click', function() {
+document.getElementById('reset_button_container').children[0].addEventListener('click', function () {
     let start_button = document.getElementById('main_game_area').children[1];
     let letterTiles = document.getElementsByClassName('tile');
     if (start_button.textContent === 'Quit') {
@@ -551,6 +551,7 @@ async function correctWordArrayFilterandSorter() {
                 }
             }
         }
+        correctWordArray = fullySortedFilteredCorrectWordArray;
         return fullySortedFilteredCorrectWordArray;
     } catch (error) {
         console.error(error);
@@ -673,7 +674,7 @@ function createLetterTileHolderEventListeners() {
         }
     } catch (error) {
         console.error(error);
-
     }
-
 }
+
+let correctWordArray;
