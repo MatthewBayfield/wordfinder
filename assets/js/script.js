@@ -768,8 +768,27 @@ function checkWord() {
         }
         let resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
+        scoreAdjuster(submittedWord);
     } catch (error) {
         console.error(error);
     }
 }
 
+/** Calculates the points scored for a correct submitted word and adds this to the HTML displayed current score. Also increments the correct words HTML element 
+ * text content by 1.
+ * @param {string} submittedWord - a word submitted for checking by a user
+ */
+function scoreAdjuster(submittedWord) {
+    try {
+        let pointsScored = submittedWord.length;
+        let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
+        currentScore += pointsScored;
+        document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent = `${currentScore}`;
+        let correctWordCounter = Number(document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent);
+        correctWordCounter += 1;
+        document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent = `${correctWordCounter}`;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
