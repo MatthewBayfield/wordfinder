@@ -678,3 +678,37 @@ function createLetterTileHolderEventListeners() {
 }
 
 let correctWordArray;
+let correctWordsGiven = [];
+
+/**Generates a string from the letter tile containing tile holders representing a user submitted word, and checks whether that word is contained within the correctWordArray,
+ * and or in the correctWordsGiven array, that represents correct words already submitted. Depending on whether the word is correct, wrong or already used,
+ *  an alert with a corresponding message is produced. A correct unused word is then added to the correctWordsGivenArray.
+ */
+function checkWord() {
+    try {
+        let submittedWord = "";
+        let tileHolders = document.getElementsByClassName('tile_holder');
+        let correct = false;
+        for (let tileHolder of tileHolders) {
+            if (tileHolder.children.length !== 0) {
+                submittedWord += tileHolder.children[0].textContent;
+            }
+        }
+        for (let correctWord of correctWordArray) {
+            if (correctWord.word === submittedWord && !(correctWordsGiven.includes(submittedWord))) {
+                window.alert('correct');
+                correct = true;
+                correctWordsGiven.push(submittedWord);
+            }
+        }
+        if (!correct) {
+            if (correctWordsGiven.includes(submittedWord)) {
+                window.alert('correct word already used');
+            } else {
+                window.alert('wrong');
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
