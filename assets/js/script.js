@@ -712,3 +712,11 @@ function checkWord() {
         console.error(error);
     }
 }
+
+const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
+checkWordButton.addEventListener('click', function () {
+    let start_button = document.getElementById('main_game_area').children[1];
+    if (start_button.textContent === 'Quit') {
+        checkWord();
+    }
+})
