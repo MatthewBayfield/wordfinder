@@ -692,16 +692,58 @@ function checkWord() {
         }
         for (let correctWord of correctWordArray) {
             if (correctWord.word === submittedWord && !(correctWordsGiven.includes(submittedWord))) {
-                window.alert('correct');
+                Swal.fire({
+                    title: 'CORRECT!',
+                    customClass: {
+                        title: 'swal-title',
+                        popup: 'swal-theme'
+                    },
+                    icon: 'success',
+                    iconColor: '#33047F',
+                    background: '#99FCFF',
+                    width: '50%',
+                    color: '#33047F',
+                    timer: '2000',
+                    showConfirmButton: false
+                });
+
                 correct = true;
                 correctWordsGiven.push(submittedWord);
             }
         }
         if (!correct) {
             if (correctWordsGiven.includes(submittedWord)) {
-                window.alert('correct word already used');
+                Swal.fire({
+                    title: 'Submitted before',
+                    html: 'You have already entered this correct word',
+                    customClass: {
+                        title: 'swal-title',
+                        popup: 'swal-theme'
+                    },
+                    icon: 'info',
+                    iconColor: '#33047F',
+                    background: '#99FCFF',
+                    width: '50%',
+                    color: '#33047F',
+                    timer: '3000',
+                    showConfirmButton: false
+                });
             } else {
-                window.alert('wrong');
+                Swal.fire({
+                    title: 'INCORRECT!',
+                    html: 'Not a valid word',
+                    customClass: {
+                        title: 'swal-title',
+                        popup: 'swal-theme'
+                    },
+                    icon: 'error',
+                    iconColor: '#33047F',
+                    background: '#99FCFF',
+                    width: '50%',
+                    color: '#33047F',
+                    timer: '2000',
+                    showConfirmButton: false
+                });
             }
         }
     } catch (error) {
