@@ -806,3 +806,19 @@ function scoreAdjuster(submittedWord) {
         console.error(error);
     }
 }
+
+/** Checks whether a bestScore variable exists in localStorage, and if it does, sets the Best Score HTML content to its value. 
+ */
+function onloadBestScore() {
+    try {
+        if (localStorage.length !== 0) {
+            let bestScorecontainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
+            bestScorecontainer.textContent = localStorage.bestScore;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Sets the displayed HTML document best score to the stored value.
+onloadBestScore();
