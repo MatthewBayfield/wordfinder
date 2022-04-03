@@ -85,13 +85,15 @@ function setTimer() {
 }
 
 // Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame. This
-//is done by simulating a quit button click event.
+//is done by simulating a quit button click event. In addition a change in the checked radio input calls the onloadBestScore function to set the HTML best score content,
+//to the now selected timer value.
 for (let input of document.querySelectorAll('[name=timer]')) {
     input.addEventListener('click', function () {
         setTimer();
         if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
             document.getElementById('main_game_area').children[1].click();
         }
+        onloadBestScore();
 
     })
 }
@@ -132,13 +134,15 @@ function timerAdjuster() {
 }
 
 // Event listeners that adjust the number of tile holders by adding and removing an eighth holder div element when the seven or eight letter radio input is checked. They also
-//simulate a quit button click event, if a different radio input is checked midgame.
+//simulate a quit button click event, if a different radio input is checked midgame. The HTML best score content is also set to the localStorage best score variable value
+// that corresponds to the now selected letter mode, via a call to the onloadBestScore function.
 
 document.getElementById('eight').addEventListener('click', function () {
     document.getElementById('eighth_tile_holder').style.setProperty('display', 'inline-block');
     if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
         document.getElementById('main_game_area').children[1].click();
     }
+    onloadBestScore();
 })
 
 document.getElementById('seven').addEventListener('click', function () {
@@ -146,6 +150,7 @@ document.getElementById('seven').addEventListener('click', function () {
     if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
         document.getElementById('main_game_area').children[1].click();
     }
+    onloadBestScore();
 })
 
 // Event listeners that open and close the game settings window, when clicking the respective close or game settings buttons
