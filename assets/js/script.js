@@ -822,3 +822,18 @@ function onloadBestScore() {
 
 // Sets the displayed HTML document best score to the stored value.
 onloadBestScore();
+
+/** When called during a game, it first resets the tile holders, and removes the letter tiles, before generating a new set of letter tiles for a new random
+ *  starting word. It also resets the correctWordsGiven array, by assigning it to an empty array again. In summary it produces a next word in the game.
+ */
+function nextWord() {
+    try {
+        let resetTilesButton = document.getElementById('reset_button_container').children[0];
+        resetTilesButton.click();
+        removeLetterTiles();
+        correctWordsGiven = [];
+        createLetterTiles();
+    } catch (error) {
+        console.error(error);
+    }
+}
