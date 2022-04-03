@@ -95,8 +95,10 @@ for (let input of document.querySelectorAll('[name=timer]')) {
     })
 }
 
-/**Gives the timer its timer functionality: decreases by 1 every time it is called until 0 when it resets. When the timer runs out, the random starting word letter times are
- * also removed, and the timeup sound plays if sound is enabled, and the quit button becomes a start button again.
+/**Gives the timer its timer functionality: decreases by 1 every time it is called until 0 when it resets. When the timer runs out, the random starting word letter tiles are
+ * also removed, and the timeup sound plays if sound is enabled, and the quit button becomes a start button again. Also when the timer runs out, the current score is compared
+ * to the bestScore local storage variable, if it exists, and sets the variable to the currrent score value if it is greater. If no bestScore exists, the current score is
+ * set to the bestScore local storage value without comparison.
  */
 function timerAdjuster() {
     try {
@@ -118,6 +120,16 @@ function timerAdjuster() {
             if (soundMode()) {
                 timeUpSound.play();
             }
+            let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
+            if (localStorage.length !== 0) {
+                let key = localStorage.key(0);
+                if (currentScore > localStorage.getItem(key)) {
+                    localStorage.setItem('bestScore', `${currentScore}`);
+                }
+            } else {
+                localStorage.setItem('bestScore', `${currentScore}`);
+            }
+            document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent = localStorage.bestScore;
             let startButton = document.getElementById('main_game_area').children[1];
             startButton.click();
         }
