@@ -827,7 +827,7 @@ function bestScoreUpdater() {
                     lettermode = 8;
                 }
                 let bestScoreVariableName = `${id}bestScore${letterMode}`;
-                if (localStorage.bestScoreVariableName === undefined) {
+                if (localStorage.getItem(`${bestScoreVariableName}`) === null) {
                     localStorage.setItem(`${bestScoreVariableName}`, `${currentScore}`);
                 } else {
                     if (currentScore > localStorage.bestScoreVariableName) {
@@ -844,20 +844,39 @@ function bestScoreUpdater() {
 }
 
 
-/** Checks whether a bestScore variable exists in localStorage, and if it does, sets the Best Score HTML content to its value. 
+/** Checks whether a bestScore variable, for the current game settings selected, exists in localStorage, and if it does, sets the Best Score HTML content to its value. 
  */
 function onloadBestScore() {
     try {
-        if (localStorage.length !== 0) {
-            let bestScorecontainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
-            bestScorecontainer.textContent = localStorage.bestScore;
+        let timerModeOptions = document.querySelectorAll('[name=timer]');
+        let bestScorecontainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
+        for (let option of timerModeOptions) {
+            if (option.checked && option !== document.querySelectorAll('[name=timer]')[0]) {
+                let id = option.getAttribute('id');
+                let letterMode;
+                if (document.getElementById('seven').checked) {
+                    letterMode = 7;
+                } else {
+                    lettermode = 8;
+                }
+                let bestScoreVariableName = `${id}bestScore${letterMode}`;
+                if (localStorage.getItem(`${bestScoreVariableName}`) !== null) {
+                    bestScorecontainer.textContent = localStorage.getItem(`${bestScoreVariableName}`);
+                } else {
+                    bestScorecontainer.textContent = '0';
+
+                }
+            }
+        }
+        if (document.querySelectorAll('[name=timer]')[0].checked) {
+            bestScorecontainer.textContent ='--';
         }
     } catch (error) {
         console.error(error);
     }
 }
 
-// Sets the displayed HTML document best score to the stored value.
+// Sets the displayed HTML document best score, to the  best score localStorage value for the current selected game settings.
 onloadBestScore();
 
 /** When called during a game, it first resets the tile holders, and removes the letter tiles, before generating a new set of letter tiles for a new random
