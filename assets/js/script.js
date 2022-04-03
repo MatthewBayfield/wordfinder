@@ -197,6 +197,14 @@ checkWordButton.addEventListener('click', function () {
     }
 })
 
+// A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
+document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').addEventListener('click', function() {
+    let start_button = document.getElementById('main_game_area').children[1];
+    if (start_button.textContent === 'Quit') {
+        nextWord();
+    }
+})
+
 // Game mechanics functions
 
 /**Generates an array of single-word containing objects, producing upto 1000 7 Letter words beginnning with the letter submitted as a parameter. 
