@@ -62,7 +62,7 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         clearInterval(timer);
         setTimer();
         let currentScorecontainer = document.querySelectorAll(".sidebar")[1].children[0].querySelector('span');
-        currentScorecontainer.textContent='0';
+        currentScorecontainer.textContent = '0';
         let correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
         correctWordCounterContainer.textContent = '0';
     }
@@ -115,13 +115,11 @@ function timerAdjuster() {
                 document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
             }
         } else {
-            clearInterval(timer);
-            setTimer();
-            document.getElementById('main_game_area').children[1].textContent = 'Start';
             if (soundMode()) {
                 timeUpSound.play();
             }
-            removeLetterTiles();
+            let startButton = document.getElementById('main_game_area').children[1];
+            startButton.click();
         }
     } catch (error) {
         console.error(error);
