@@ -65,6 +65,7 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         currentScorecontainer.textContent = '0';
         let correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
         correctWordCounterContainer.textContent = '0';
+        correctWordsGiven = [];
     }
 })
 
@@ -198,7 +199,7 @@ checkWordButton.addEventListener('click', function () {
 })
 
 // A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
-document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').addEventListener('click', function() {
+document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').addEventListener('click', function () {
     let start_button = document.getElementById('main_game_area').children[1];
     if (start_button.textContent === 'Quit') {
         nextWord();
@@ -797,7 +798,7 @@ function checkWord() {
 }
 
 /** Calculates the points scored for a correct submitted word and adds this to the HTML displayed current score. Also increments the correct words HTML element 
- * text content by 1.
+ * text content by 1. Finally it checks how many correct words have been given for the current set of letter tiles, and calls the nextWord function if 10 words have been given.
  * @param {string} submittedWord - a word submitted for checking by a user
  */
 function scoreAdjuster(submittedWord) {
@@ -809,6 +810,9 @@ function scoreAdjuster(submittedWord) {
         let correctWordCounter = Number(document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent);
         correctWordCounter += 1;
         document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent = `${correctWordCounter}`;
+        if (correctWordsGiven.length === 10) {
+            nextWord();
+        }
 
     } catch (error) {
         console.error(error);
