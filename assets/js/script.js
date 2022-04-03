@@ -121,16 +121,7 @@ function timerAdjuster() {
             if (soundMode()) {
                 timeUpSound.play();
             }
-            let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
-            if (localStorage.length !== 0) {
-                let key = localStorage.key(0);
-                if (currentScore > localStorage.getItem(key)) {
-                    localStorage.setItem('bestScore', `${currentScore}`);
-                }
-            } else {
-                localStorage.setItem('bestScore', `${currentScore}`);
-            }
-            document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent = localStorage.bestScore;
+            bestScoreUpdater();
             let startButton = document.getElementById('main_game_area').children[1];
             startButton.click();
         }
@@ -818,6 +809,40 @@ function scoreAdjuster(submittedWord) {
         console.error(error);
     }
 }
+
+/** When called evaluates the game settings for the current game, and updates the corresponding localStorage best score variable for the current game settings,
+ *  if the current score is greater than its value. A new best score is then set as the best score HTML element content.
+ */
+function bestScoreUpdater() {
+    try {
+        let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
+        let timerModeOptions = document.querySelectorAll('[name=timer]');
+        for (let option of timerModeOptions) {
+            if (option.checked && option !== document.querySelectorAll('[name=timer]')[0]) {
+                let id = option.getAttribute('id');
+                let letterMode;
+                if (document.getElementById('seven').checked) {
+                    letterMode = 7;
+                } else {
+                    lettermode = 8;
+                }
+                let bestScoreVariableName = `${id}bestScore${letterMode}`;
+                if (localStorage.bestScoreVariableName === undefined) {
+                    localStorage.setItem(`${bestScoreVariableName}`, `${currentScore}`);
+                } else {
+                    if (currentScore > localStorage.bestScoreVariableName) {
+                        localStorage.setItem(`${bestScoreVariableName}`, `${currentScore}`);
+                    }
+                }
+                document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent = localStorage.getItem(`${bestScoreVariableName}`);
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
 
 /** Checks whether a bestScore variable exists in localStorage, and if it does, sets the Best Score HTML content to its value. 
  */
