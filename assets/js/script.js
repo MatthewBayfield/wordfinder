@@ -869,7 +869,7 @@ function bestScoreUpdater() {
                 if (document.getElementById('seven').checked) {
                     letterMode = 7;
                 } else {
-                    lettermode = 8;
+                    letterMode = 8;
                 }
                 let bestScoreVariableName = `${id}bestScore${letterMode}`;
                 if (localStorage.getItem(`${bestScoreVariableName}`) === null) {
@@ -902,7 +902,7 @@ function onloadBestScore() {
                 if (document.getElementById('seven').checked) {
                     letterMode = 7;
                 } else {
-                    lettermode = 8;
+                    letterMode = 8;
                 }
                 let bestScoreVariableName = `${id}bestScore${letterMode}`;
                 if (localStorage.getItem(`${bestScoreVariableName}`) !== null) {
