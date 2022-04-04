@@ -1,7 +1,7 @@
 //Event listeners to allow the how_to_play window to be opened and closed using the relevant buttons.
 
-let howToPlayWindow = document.getElementById('how_to_play_window');
-let closeButton = howToPlayWindow.children[2];
+const howToPlayWindow = document.getElementById('how_to_play_window');
+const closeButton = howToPlayWindow.children[2];
 closeButton.addEventListener('click', function () {
     howToPlayWindow = document.getElementById('how_to_play_window');
     howToPlayWindow.style.display = 'none';
@@ -12,9 +12,9 @@ document.getElementById('game_instructions').addEventListener('click', function 
     howToPlayWindow.style.display = 'block';
 })
 
-// Gives all buttons a form of focus when hovered over.
+// Event listeners that give all buttons a form of focus when hovered over.
 
-let allButtons = document.getElementsByTagName('button');
+const allButtons = document.getElementsByTagName('button');
 for (let button of allButtons) {
     button.addEventListener('mouseenter', function () {
         this.style.border = "solid 0.1rem gold";
@@ -33,10 +33,10 @@ function soundMode() {
 }
 
 // sound effect audio objects variables.
-let gameStartSound = new Audio("assets/audio/game_start.mp3");
-let timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
-let correctWordSubmittedSound = new Audio("assets/audio/correct_word.mp3");
-let incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3")
+const gameStartSound = new Audio("assets/audio/game_start.mp3");
+const timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
+const correctWordSubmittedSound = new Audio("assets/audio/correct_word.mp3");
+const incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3");
 
 
 //start button click event listener. Changes button to a quit button, and a quit button to start button when clicked. Clicking the start button also triggers the
@@ -55,15 +55,15 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         createLetterTiles();
 
     } else {
-        let resetTilesButton = document.getElementById('reset_button_container').children[0];
+        const resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
         removeLetterTiles();
         this.textContent = 'Start';
         clearInterval(timer);
         setTimer();
-        let currentScorecontainer = document.querySelectorAll(".sidebar")[1].children[0].querySelector('span');
+        const currentScorecontainer = document.querySelectorAll(".sidebar")[1].children[0].querySelector('span');
         currentScorecontainer.textContent = '0';
-        let correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
+        const correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
         correctWordCounterContainer.textContent = '0';
         correctWordsGiven = [];
     }
@@ -208,8 +208,8 @@ document.getElementById('game_settings').children[2].children[1].addEventListene
 // Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
 // by making them visible again.
 document.getElementById('reset_button_container').children[0].addEventListener('click', function () {
-    let start_button = document.getElementById('main_game_area').children[1];
-    let letterTiles = document.getElementsByClassName('tile');
+    const start_button = document.getElementById('main_game_area').children[1];
+    const letterTiles = document.getElementsByClassName('tile');
     if (start_button.textContent === 'Quit') {
         tileHolders = document.getElementsByClassName('tile_holder');
         for (let tileHolder of tileHolders) {
@@ -228,7 +228,7 @@ document.getElementById('reset_button_container').children[0].addEventListener('
 // A click event listener for the check word button, that calls the checkWord function to check whether a valid word has been submitted during a game.
 const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
 checkWordButton.addEventListener('click', function () {
-    let start_button = document.getElementById('main_game_area').children[1];
+    const start_button = document.getElementById('main_game_area').children[1];
     if (start_button.textContent === 'Quit') {
         checkWord();
     }
@@ -236,7 +236,7 @@ checkWordButton.addEventListener('click', function () {
 
 // A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
 document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').addEventListener('click', function () {
-    let start_button = document.getElementById('main_game_area').children[1];
+    const start_button = document.getElementById('main_game_area').children[1];
     if (start_button.textContent === 'Quit') {
         nextWord();
     }
@@ -269,7 +269,7 @@ async function sevenLetter1000Words(letter) {
  */
 async function random7Letter5000Words() {
     try {
-        let partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
+        const partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
         let randomSetOf5Letters = new Set();
         let random7Letter5000WordArray = [];
         while (randomSetOf5Letters.size < 5) {
@@ -354,7 +354,7 @@ async function eightLetter1000Words(letter) {
  */
 async function random8Letter5000Words() {
     try {
-        let partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
+        const partialAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w'];
         let randomSetOf5Letters = new Set();
         let random8Letter5000WordArray = [];
         while (randomSetOf5Letters.size < 5) {
@@ -660,7 +660,7 @@ function scrambler(randomStartingWord) {
 async function createLetterTiles() {
     try {
         await correctWordArrayFilterandSorter();
-        let randomStartingWord = usedWords[usedWords.length - 1];
+        const randomStartingWord = usedWords[usedWords.length - 1];
         let scrambledRandomStartingWord = scrambler(randomStartingWord);
         for (let letter of scrambledRandomStartingWord) {
             let tile = document.createElement('div');
@@ -703,7 +703,7 @@ let selectedTileCopy;
  */
 function createLetterTileEventListeners() {
     try {
-        let letterTiles = document.getElementsByClassName('tile');
+        const letterTiles = document.getElementsByClassName('tile');
         for (let letterTile of letterTiles) {
             letterTile.addEventListener('click', function () {
                 selectedTileCopy = this;
@@ -728,7 +728,7 @@ function createLetterTileEventListeners() {
  */
 function createLetterTileHolderEventListeners() {
     try {
-        let tileHolders = document.getElementsByClassName('tile_holder');
+        const tileHolders = document.getElementsByClassName('tile_holder');
         for (let tileHolder of tileHolders) {
             tileHolder.addEventListener('click', function () {
                 if (selectedTileCopy !== undefined) {
@@ -753,7 +753,7 @@ let correctWordsGiven = [];
 function checkWord() {
     try {
         let submittedWord = "";
-        let tileHolders = document.getElementsByClassName('tile_holder');
+        const tileHolders = document.getElementsByClassName('tile_holder');
         let correct = false;
         for (let tileHolder of tileHolders) {
             if (tileHolder.children.length !== 0) {
@@ -839,7 +839,7 @@ function checkWord() {
  */
 function scoreAdjuster(submittedWord) {
     try {
-        let pointsScored = submittedWord.length;
+        const pointsScored = submittedWord.length;
         let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
         currentScore += pointsScored;
         document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent = `${currentScore}`;
@@ -861,10 +861,10 @@ function scoreAdjuster(submittedWord) {
 function bestScoreUpdater() {
     try {
         let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
-        let timerModeOptions = document.querySelectorAll('[name=timer]');
+        const timerModeOptions = document.querySelectorAll('[name=timer]');
         for (let option of timerModeOptions) {
             if (option.checked && option !== document.querySelectorAll('[name=timer]')[0]) {
-                let id = option.getAttribute('id');
+                const id = option.getAttribute('id');
                 let letterMode;
                 if (document.getElementById('seven').checked) {
                     letterMode = 7;
@@ -893,11 +893,11 @@ function bestScoreUpdater() {
  */
 function onloadBestScore() {
     try {
-        let timerModeOptions = document.querySelectorAll('[name=timer]');
+        const timerModeOptions = document.querySelectorAll('[name=timer]');
         let bestScorecontainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
         for (let option of timerModeOptions) {
             if (option.checked && option !== document.querySelectorAll('[name=timer]')[0]) {
-                let id = option.getAttribute('id');
+                const id = option.getAttribute('id');
                 let letterMode;
                 if (document.getElementById('seven').checked) {
                     letterMode = 7;
@@ -929,7 +929,7 @@ onloadBestScore();
  */
 function nextWord() {
     try {
-        let resetTilesButton = document.getElementById('reset_button_container').children[0];
+        const resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
         removeLetterTiles();
         correctWordsGiven = [];
