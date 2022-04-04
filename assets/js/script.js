@@ -309,6 +309,7 @@ async function random7LetterWordSelector() {
         let randomIndex = Math.floor(Math.random() * words7LettersArray.length);
         let selectedStringCharacterArray = [];
         const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        let validCharacters;
         do {
             selectedStringCharacterArray = [];
             randomIndex = Math.floor(Math.random() * words7LettersArray.length);
@@ -392,6 +393,7 @@ async function random8LetterWordSelector() {
         let randomIndex = Math.floor(Math.random() * words8LettersArray.length);
         let selectedStringCharacterArray = [];
         const Alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        let validCharacters;
         do {
             selectedStringCharacterArray = [];
             randomIndex = Math.floor(Math.random() * words8LettersArray.length);
