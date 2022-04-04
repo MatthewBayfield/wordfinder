@@ -491,9 +491,9 @@ async function noDefinitionWordFilter(retrievedWords) {
  *  The returned array is an early form of the correct word list array, which in its final form is used to check  the correctness of submitted word answers during the game.
  * @returns concatenatedCorrectWordListArray - a preprocessed form of the correct word answer array 
  */
-async function correctWordListFilterandConcatenate() {
+async function correctWordListFilterAndConcatenate() {
     try {
-        urls = await urlGenerator();
+        let urls = await urlGenerator();
         if (urls === undefined) {
             throw new Error('propagated error from called function');
         }
@@ -543,7 +543,7 @@ function letterChecker(correctWord, parentWord) {
 async function letterCheckerFilter() {
     try {
         let filteredCorrectWordArray = [];
-        let currentCorrectWordArray = await correctWordListFilterandConcatenate();
+        let currentCorrectWordArray = await correctWordListFilterAndConcatenate();
         if (currentCorrectWordArray === undefined) {
             throw new Error('propagated error from called function');
         }
