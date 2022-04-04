@@ -499,7 +499,7 @@ async function correctWordListFilterAndConcatenate() {
         }
         let concatenatedCorrectWordListArray = [];
         for (let url of urls) {
-            filteredWordArrayToConcatenate = await noDefinitionWordFilter(correctWordListFetcher(url));
+            let filteredWordArrayToConcatenate = await noDefinitionWordFilter(correctWordListFetcher(url));
             if (filteredWordArrayToConcatenate === undefined) {
                 throw new Error('propagated error from called function');
             }
