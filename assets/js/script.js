@@ -101,7 +101,8 @@ for (let input of document.querySelectorAll('[name=timer]')) {
 /**Gives the timer its timer functionality: decreases by 1 every time it is called until 0 when it resets. When the timer runs out, the random starting word letter tiles are
  * also removed, and the timeup sound plays if sound is enabled, and the quit button becomes a start button again. Also when the timer runs out, the current score is compared
  * to the bestScore local storage variable, if it exists, and sets the variable to the currrent score value if it is greater. If no bestScore exists, the current score is
- * set to the bestScore local storage value without comparison.
+ * set to the bestScore local storage value without comparison. Finally when the timer reaches zero, a times up sweetalert2 is triggered that displays a game summary;
+ * then if a new high score is achieved, another sweetalert2 is generated.
  */
 function timerAdjuster() {
     try {
@@ -124,6 +125,45 @@ function timerAdjuster() {
                 timeUpSound.play();
             }
             bestScoreUpdater();
+            let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
+            let correctWords = Number(document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent);
+            let pointsToWordsRatio = ((currentScore * 1000) / (correctWords * 1000)).toFixed(1);
+            if (correctWords === 0) {
+                pointsToWordsRatio = 0;
+            }
+            Swal.fire({
+                title: 'TIMES UP!',
+                html: `<div>Score:${currentScore}</div>` + `<div>Correct Words:${correctWords}</div>` + `<div>points-to-words ratio:${pointsToWordsRatio}</div>`,
+                customClass: {
+                    title: 'swal-title',
+                    popup: 'swal-theme'
+                },
+                icon: 'info',
+                iconColor: '#33047F',
+                background: '#99FCFF',
+                width: '50%',
+                color: '#33047F',
+                showConfirmButton: true,
+                confirmButtonText: 'CONTINUE'
+            }).then(function () {
+                let bestScore = Number(document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent);
+                if (currentScore === bestScore) {
+                    Swal.fire({
+                        title: 'NEW HIGH SCORE!',
+                        customClass: {
+                            title: 'swal-title',
+                            popup: 'swal-theme'
+                        },
+                        icon: 'info',
+                        iconColor: '#33047F',
+                        background: '#99FCFF',
+                        width: '50%',
+                        color: '#33047F',
+                        showConfirmButton: true,
+                        confirmButtonText: 'CONTINUE'
+                    });
+                }
+            });
             let startButton = document.getElementById('main_game_area').children[1];
             startButton.click();
         }
@@ -835,7 +875,7 @@ function bestScoreUpdater() {
                 if (localStorage.getItem(`${bestScoreVariableName}`) === null) {
                     localStorage.setItem(`${bestScoreVariableName}`, `${currentScore}`);
                 } else {
-                    if (currentScore > localStorage.bestScoreVariableName) {
+                    if (currentScore > localStorage.getItem(`${bestScoreVariableName}`)) {
                         localStorage.setItem(`${bestScoreVariableName}`, `${currentScore}`);
                     }
                 }
@@ -874,7 +914,7 @@ function onloadBestScore() {
             }
         }
         if (document.querySelectorAll('[name=timer]')[0].checked) {
-            bestScorecontainer.textContent ='--';
+            bestScorecontainer.textContent = '--';
         }
     } catch (error) {
         console.error(error);
