@@ -1,7 +1,7 @@
 //Event listeners to allow the how_to_play window to be opened and closed using the relevant buttons.
 
 const howToPlayWindow = document.getElementById('how_to_play_window');
-const closeButton = howToPlayWindow.children[2];
+const closeButton = howToPlayWindow.children[5];
 closeButton.addEventListener('click', function () {
     howToPlayWindow.style.display = 'none';
 });
