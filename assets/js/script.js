@@ -4,11 +4,11 @@ const howToPlayWindow = document.getElementById('how_to_play_window');
 const closeButton = howToPlayWindow.children[2];
 closeButton.addEventListener('click', function () {
     howToPlayWindow.style.display = 'none';
-})
+});
 
 document.getElementById('game_instructions').addEventListener('click', function () {
     howToPlayWindow.style.display = 'block';
-})
+});
 
 // Event listeners that give all buttons a form of focus when hovered over.
 
@@ -16,11 +16,11 @@ const allButtons = document.getElementsByTagName('button');
 for (let button of allButtons) {
     button.addEventListener('mouseenter', function () {
         this.style.border = "solid 0.1rem gold";
-    })
+    });
 
     button.addEventListener('mouseleave', function () {
         this.removeAttribute('style');
-    })
+    });
 }
 
 /** Checks whether the sound mode 'on' radio input is checked. 
@@ -65,7 +65,7 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
         correctWordCounterContainer.textContent = '0';
         correctWordsGiven = [];
     }
-})
+});
 
 /** When called sets the start time of the timer, according to the currently checked timer radio input.
  */
@@ -93,7 +93,7 @@ for (let input of document.querySelectorAll('[name=timer]')) {
         }
         onloadBestScore();
 
-    })
+    });
 }
 
 /**Gives the timer its timer functionality: decreases by 1 every time it is called until 0 when it resets. When the timer runs out, the random starting word letter tiles are
@@ -181,7 +181,7 @@ document.getElementById('eight').addEventListener('click', function () {
         document.getElementById('main_game_area').children[1].click();
     }
     onloadBestScore();
-})
+});
 
 document.getElementById('seven').addEventListener('click', function () {
     document.getElementById('eighth_tile_holder').style.setProperty('display', 'none');
@@ -189,19 +189,19 @@ document.getElementById('seven').addEventListener('click', function () {
         document.getElementById('main_game_area').children[1].click();
     }
     onloadBestScore();
-})
+});
 
 // Event listeners that open and close the game settings window, when clicking the respective close or game settings buttons
 
 document.getElementById('game_settings').children[1].addEventListener('click', function () {
     const gameSettingsWindow = document.getElementById('game_settings').children[2];
     gameSettingsWindow.style.setProperty('visibility', 'visible');
-})
+});
 
 document.getElementById('game_settings').children[2].children[1].addEventListener('click', function () {
     const gameSettingsWindow = document.getElementById('game_settings').children[2];
     gameSettingsWindow.style.removeProperty('visibility');
-})
+});
 
 // Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
 // by making them visible again.
@@ -221,7 +221,7 @@ document.getElementById('reset_button_container').children[0].addEventListener('
             letterTile.style.removeProperty('border-color');
         }
     }
-})
+});
 
 // A click event listener for the check word button, that calls the checkWord function to check whether a valid word has been submitted during a game.
 const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
@@ -230,7 +230,7 @@ checkWordButton.addEventListener('click', function () {
     if (start_button.textContent === 'Quit') {
         checkWord();
     }
-})
+});
 
 // A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
 document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').addEventListener('click', function () {
@@ -238,7 +238,7 @@ document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').add
     if (start_button.textContent === 'Quit') {
         nextWord();
     }
-})
+});
 
 // Game mechanics functions
 
@@ -317,9 +317,9 @@ async function random7LetterWordSelector() {
             }
             validCharacters = selectedStringCharacterArray.every(function (character) {
                 return Alphabet.includes(character);
-            })
+            });
         }
-        while (usedWords.includes(words7LettersArray[randomIndex].word) || !validCharacters)
+        while (usedWords.includes(words7LettersArray[randomIndex].word) || !validCharacters);
         usedWords.push(words7LettersArray[randomIndex].word);
         return words7LettersArray[randomIndex].word;
     } catch (error) {
@@ -400,9 +400,9 @@ async function random8LetterWordSelector() {
             }
             validCharacters = selectedStringCharacterArray.every(function (character) {
                 return Alphabet.includes(character);
-            })
+            });
         }
-        while (usedWords.includes(words8LettersArray[randomIndex].word) || !validCharacters)
+        while (usedWords.includes(words8LettersArray[randomIndex].word) || !validCharacters);
         usedWords.push(words8LettersArray[randomIndex].word);
         return words8LettersArray[randomIndex].word;
     } catch (error) {
@@ -430,7 +430,7 @@ async function urlGenerator() {
         for (i = 4; i <= selectedWord.length; i++) {
             let q = "?";
             let url = "";
-            q = q.repeat(i)
+            q = q.repeat(i);
             url = `sp=${q},*%2B${selectedWord}`;
             urls.push(url);
         }
@@ -454,7 +454,7 @@ async function correctWordListFetcher(url) {
         retrievedWords = await retrievedWords.json();
         return retrievedWords;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 
 }
@@ -582,7 +582,7 @@ function wordFrequencyArrayExtractor(unextractedarray) {
 function sortByWordFrequency(extractedWordFrequencyArray) {
     try {
         extractedWordFrequencyArray.sort(function (a, b) {
-            return b - a
+            return b - a;
         });
         return extractedWordFrequencyArray;
     } catch (error) {
@@ -644,7 +644,7 @@ function scrambler(randomStartingWord) {
             scrambledRandomStartingWord += letter;
             indexArray.splice(randomIndex, 1);
             length -= 1;
-        } while (scrambledRandomStartingWord.length < wordLength)
+        } while (scrambledRandomStartingWord.length < wordLength);
         return scrambledRandomStartingWord;
     } catch (error) {
         console.error(error);
@@ -711,7 +711,7 @@ function createLetterTileEventListeners() {
                         OtherLetterTile.style.removeProperty('border-color');
                     }
                 }
-            })
+            });
         }
     } catch (error) {
         console.error(error);
@@ -734,7 +734,7 @@ function createLetterTileHolderEventListeners() {
                     selectedTileCopy.style.setProperty('visibility', 'hidden');
                     selectedTileCopy = undefined;
                 }
-            })
+            });
         }
     } catch (error) {
         console.error(error);
