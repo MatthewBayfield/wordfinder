@@ -682,8 +682,8 @@ async function createLetterTiles() {
 function removeLetterTiles() {
     try {
         let tiles = document.getElementById('gameplay_area').children[0].children;
-        if (!(tiles.length === 0)) {
-            while (!(tiles.length === 0)) {
+        if (tiles.length !== 0) {
+            while (tiles.length !== 0) {
                 tiles[0].remove();
             }
         }
