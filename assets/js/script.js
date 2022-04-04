@@ -3,12 +3,10 @@
 const howToPlayWindow = document.getElementById('how_to_play_window');
 const closeButton = howToPlayWindow.children[2];
 closeButton.addEventListener('click', function () {
-    howToPlayWindow = document.getElementById('how_to_play_window');
     howToPlayWindow.style.display = 'none';
 })
 
 document.getElementById('game_instructions').addEventListener('click', function () {
-    howToPlayWindow = document.getElementById('how_to_play_window');
     howToPlayWindow.style.display = 'block';
 })
 
