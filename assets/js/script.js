@@ -597,14 +597,14 @@ function sortByWordFrequency(extractedWordFrequencyArray) {
  *  and generates the unfiltered and unsorted correct word array for this selected word, which is then fully sorted and filtered.
  * @returns fullySortedFilteredCorrectWordArray
  */
-async function correctWordArrayFilterandSorter() {
+async function correctWordArrayFilterAndSorter() {
     try {
         let unextractedCorrectWordArray = await letterCheckerFilter();
         if (unextractedCorrectWordArray === undefined) {
             throw new Error('propagated error from called function');
         }
         let extractedWordFrequencyArray = wordFrequencyArrayExtractor(unextractedCorrectWordArray);
-        let = fullySortedFilteredCorrectWordArray = [];
+        let fullySortedFilteredCorrectWordArray = [];
         let sortedExtractedWordFrequencyArray = await sortByWordFrequency(extractedWordFrequencyArray);
         if (sortedExtractedWordFrequencyArray === undefined) {
             throw new Error('propagated error from called function');
@@ -659,7 +659,7 @@ function scrambler(randomStartingWord) {
  */
 async function createLetterTiles() {
     try {
-        await correctWordArrayFilterandSorter();
+        await correctWordArrayFilterAndSorter();
         const randomStartingWord = usedWords[usedWords.length - 1];
         let scrambledRandomStartingWord = scrambler(randomStartingWord);
         for (let letter of scrambledRandomStartingWord) {
