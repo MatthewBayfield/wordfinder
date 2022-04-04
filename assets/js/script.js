@@ -429,7 +429,7 @@ async function urlGenerator() {
             throw new Error('propagated error from called function');
         }
         let urls = [];
-        for (i = 4; i <= selectedWord.length; i++) {
+        for (let i = 4; i <= selectedWord.length; i++) {
             let q = "?";
             let url = "";
             q = q.repeat(i);
