@@ -87,7 +87,7 @@ h1+p {
     top: 0;
     left: 2.5%;
     width: 95%;
-    height: 250%;
+    height: 400%;
     background-color: #33047F;
     /*To be changed to display: none with JS when the close button is clicked*/
     display: block;
@@ -98,9 +98,14 @@ h1+p {
 /*close button*/
 #how_to_play_window>button {
     position: relative;
-    top: 10%;
+    top: -1%;
     margin: 0 auto;
     width: fit-content;
+}
+
+#how_to_play_window>p {
+    font-size: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 #how_to_play>h2 {
