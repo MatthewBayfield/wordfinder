@@ -274,7 +274,7 @@ async function random7Letter5000Words() {
             let randomIndex = Math.floor(Math.random() * 23);
             randomSetOf5Letters.add(partialAlphabet[randomIndex]);
         }
-        for (letter of randomSetOf5Letters) {
+        for (let letter of randomSetOf5Letters) {
             let batch = await sevenLetter1000Words(letter);
             if (batch === undefined) {
                 throw new Error('propagated error from called function');
