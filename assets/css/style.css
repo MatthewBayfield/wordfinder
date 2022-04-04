@@ -21,6 +21,7 @@ body {
 button {
     font-family: 'Luckiest Guy', cursive;
     font-weight: 400;
+    font-size: 0.6rem;
     background-color: #99FCFF;
     color: #33047F;
     border-radius: 1rem;
@@ -33,7 +34,7 @@ button {
 h1,
 h2,
 h3 {
-    margin: 0.5rem auto;
+    margin: 0.1rem auto;
     width: fit-content;
     font-family: 'Bungee Inline', cursive;
     font-weight: 400;
@@ -60,7 +61,6 @@ h1+p {
     margin: 0 auto;
     width: fit-content;
     display: block;
-    font-size: 0.5rem;
 }
 
 #main_game_area {
