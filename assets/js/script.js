@@ -665,7 +665,7 @@ async function createLetterTiles() {
         for (let letter of scrambledRandomStartingWord) {
             let tile = document.createElement('div');
             tile.setAttribute('class', 'tile');
-            tileParagraph = document.createElement('p');
+            const tileParagraph = document.createElement('p');
             tileParagraph.textContent = letter;
             tile.appendChild(tileParagraph);
             document.getElementById('gameplay_area').children[0].appendChild(tile);
