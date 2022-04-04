@@ -209,7 +209,7 @@ document.getElementById('reset_button_container').children[0].addEventListener('
     const start_button = document.getElementById('main_game_area').children[1];
     const letterTiles = document.getElementsByClassName('tile');
     if (start_button.textContent === 'Quit') {
-        tileHolders = document.getElementsByClassName('tile_holder');
+        const tileHolders = document.getElementsByClassName('tile_holder');
         for (let tileHolder of tileHolders) {
             if (tileHolder.children.length !== 0) {
                 tileHolder.children[0].remove();
