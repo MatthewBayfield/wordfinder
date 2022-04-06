@@ -324,3 +324,92 @@ h1+p {
         font-size: 2rem;
     }
 }
+
+/*Media queries for portrait orientation*/
+
+@media screen and (orientation: portrait) {
+    #main_game_area>div {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: flex;
+    }
+
+    .sidebar>div {
+        flex: 1 1;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    #main_game_area h3 {
+        font-size: 0.85rem;
+    }
+
+}
+
+@media screen and (orientation: portrait) and (min-height: 360px) and (min-width: 240px) {
+    html {
+        font-size: 0.63rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 450px) and (min-width: 280px) {
+    html {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 515px) and (min-width: 310px) {
+    html {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 575px) and (min-width: 350px) {
+    html {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 650px) and (min-width: 390px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 775px) and (min-width: 475px) {
+    html {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 910px) and (min-width: 550px) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 1040px) and (min-width: 630px) {
+    html {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 1165px) and (min-width: 710px) {
+    html {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-height: 1280px) and (min-width: 785px) {
+    html {
+        font-size: 2rem;
+    }
+}
