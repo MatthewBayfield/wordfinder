@@ -256,3 +256,68 @@ h1+p {
 .swal-theme {
     border: 0.2rem solid #ffd700 !important;
 }
+
+/*Media queries for landscape orientation or equivalently width:height>1*/
+
+@media screen and (orientation: landscape) and (min-height: 279px)  and (min-width: 403px) {
+    html {
+        font-size: 0.64rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-height: 302px)  and (min-width: 440px) {
+    html {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-height: 349px)  and (min-width: 508px) {
+    html {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-height: 398px)  and (min-width: 567px) {
+    html {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-height: 435px) and (min-width: 627px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-height: 520px) and (min-width: 753px) {
+    html {
+        font-size: 1.2rem;
+    }
+}
+
+
+@media screen and (orientation: landscape) and (min-height: 619px) and (min-width: 889px) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+
+
+@media screen and (orientation: landscape) and (min-height: 701px) and (min-width: 1013px) {
+    html {
+        font-size: 1.6rem;
+    }
+}
+
+
+@media screen and (orientation: landscape) and (min-height: 776px) and (min-width: 1129px)  {
+    html {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-height: 863px) and (min-width: 1267px) {
+    html {
+        font-size: 2rem;
+    }
+}
