@@ -38,22 +38,27 @@
                     <p>
                         First choose your game settings: choose to play with 7 or 8
                         letters, and play against the clock for either
-                        3m, 5m, 10m,  or with no timer at all.
+                        3m, 5m, 10m, or with no timer at all.
                     </p>
                     <p>
-                        Click/tap start, to generate a random set of 7/8 letter tiles. Try to make up to 10, 4+ letter words. To make a word, select a letter tile by clicking/tapping it,
+                        Click/tap start, to generate a random set of 7/8 letter tiles. Try to make up to 10, 4+ letter
+                        words. To make a word, select a letter tile by clicking/tapping it,
                         and then click/tap one of the letter tile holders, to place that tile in that position.
                         Click/tap the reset tiles button to reset placed letters.
                         To submit a word, click/tap the check word button.
-                        Struggling to find up to 10 words? Click/tap the next word button to generate a new set of letter tiles, as often as you like.
+                        Struggling to find up to 10 words? Click/tap the next word button to generate a new set of
+                        letter tiles, as often as you like.
                     </p>
                     <p>
-                        You receive 1pt per letter in every correct word you make. The game ends when the timer runs out.
-                         During a game your current score and correct word count are displayed, as well as your best score for the
+                        You receive 1pt per letter in every correct word you make. The game ends when the timer runs
+                        out.
+                        During a game your current score and correct word count are displayed, as well as your best
+                        score for the
                         game settings you selected. Enjoy!
                     </p>
                     <p>
-                        Note if you are playing with the sound on mode, please ensure your browser is set to allow autoplaying of sounds.
+                        Note if you are playing with the sound on mode, please ensure your browser is set to allow
+                        autoplaying of sounds.
                     </p>
                     <button type="button">CLOSE</button>
                 </div>
@@ -67,30 +72,36 @@
                         <!--timer-->
                         <div>
                             <h3>Timer</h3>
-                            <label for="no_timer">No timer</label>
-                            <input type="radio" id="no_timer" name="timer">
-                            <label for="threemins">3m</label>
-                            <input id="threemins" type="radio" name="timer">
-                            <label for="fivemins">5m</label>
-                            <input type="radio" id="fivemins" name="timer" checked>
-                            <label for="tenmins">10m</label>
-                            <input type="radio" id="tenmins" name="timer">
+                            <fieldset name="timer">
+                                <label for="no_timer">No timer</label>
+                                <input type="radio" id="no_timer" name="timer">
+                                <label for="threemins">3m</label>
+                                <input id="threemins" type="radio" name="timer">
+                                <label for="fivemins">5m</label>
+                                <input type="radio" id="fivemins" name="timer" checked>
+                                <label for="tenmins">10m</label>
+                                <input type="radio" id="tenmins" name="timer">
+                            </fieldset>
                         </div>
                         <!--# of letters-->
                         <div>
                             <h3># of letters</h3>
-                            <label for="seven">7</label>
-                            <input type="radio" id="seven" name="letters" checked>
-                            <label for="eight">8</label>
-                            <input id="eight" type="radio" name="letters">
+                            <fieldset name="letters">
+                                <label for="seven">7</label>
+                                <input type="radio" id="seven" name="letters" checked>
+                                <label for="eight">8</label>
+                                <input id="eight" type="radio" name="letters">
+                            </fieldset>
                         </div>
                         <!--Sound mode-->
                         <div>
                             <h3>Sound mode</h3>
-                            <label for="on">on</label>
-                            <input type="radio" id="on" name="sound">
-                            <label for="off">off</label>
-                            <input id="off" type="radio" name="sound" checked>
+                            <fieldset name="sound">
+                                <label for="on">on</label>
+                                <input type="radio" id="on" name="sound">
+                                <label for="off">off</label>
+                                <input id="off" type="radio" name="sound" checked>
+                            </fieldset>
                         </div>
                     </div>
                     <button type="button">CLOSE</button>
