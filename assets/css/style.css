@@ -252,6 +252,7 @@ h1+p {
 
 
 /* Sweetalert2 customClass styling*/
+
 .swal-title {
     width: auto;
 }
@@ -328,8 +329,21 @@ h1+p {
 /*Media queries for portrait orientation*/
 
 @media screen and (orientation: portrait) {
-    #main_game_area>div {
-        flex-direction: column;
+
+    button {
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .swal-title {
+        font-size: 1.3rem !important;
+    }
+
+    .swal-theme {
+        font-size: 0.6rem !important;
     }
 
     .sidebar {
@@ -340,12 +354,8 @@ h1+p {
         flex: 1 1;
     }
 
-    button {
-        font-size: 0.9rem;
-    }
-
-    h2 {
-        font-size: 1.2rem;
+    #main_game_area>div {
+        flex-direction: column;
     }
 
     #main_game_area h3 {
