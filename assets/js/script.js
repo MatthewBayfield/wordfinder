@@ -809,7 +809,7 @@ function checkWord() {
                     incorrectWordSubmittedSound.play();
                 }
             } else {
-                if (submittedWord.length > 4) {
+                if (submittedWord.length >= 4) {
                     Swal.fire({
                         title: 'INCORRECT!',
                         html: 'Not a valid word',
