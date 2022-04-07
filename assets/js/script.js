@@ -41,16 +41,18 @@ const incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3")
 // start game sound for enabled sound, and starts the clock. It also adds the random starting word letter tiles.
 // Clicking the quit button resets the clock and removes the unplaced letter tiles, and removes any letter tiles from the tile holders,
 // through a simulated reset tiles button click. The quit button when clicked also resets the current score and correct words counter.
-document.getElementById('main_game_area').children[1].addEventListener('click', function () {
+document.getElementById('main_game_area').children[1].addEventListener('click', async function () {
     if (this.textContent === 'Start') {
         this.textContent = 'Quit';
+        this.disabled = true;
         if (soundMode()) {
             gameStartSound.play();
         }
         if (!(document.getElementById('no_timer').checked)) {
             timer = setInterval(timerAdjuster, 1000);
         }
-        createLetterTiles();
+        await createLetterTiles();
+        this.disabled = false;
 
     } else {
         const resetTilesButton = document.getElementById('reset_button_container').children[0];
