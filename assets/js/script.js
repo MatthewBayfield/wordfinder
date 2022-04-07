@@ -1,18 +1,41 @@
-//Event listeners to allow the how_to_play window to be opened and closed using the relevant buttons.
+// DOM element constants:
 
+const allButtons = document.getElementsByTagName('button');
+//how_to_play window constants
 const howToPlayWindow = document.getElementById('how_to_play_window');
 const closeButton = howToPlayWindow.children[5];
+const gameInstructionsButton = document.getElementById('game_instructions');
+//game settings section constants
+const threeMinsTimerInput = document.getElementById('threemins');
+const fiveMinsTimerInput = document.getElementById('fivemins');
+const tenMinsTimerInput = document.getElementById('tenmins');
+const allTimerRadioInputs = document.querySelectorAll('[name=timer]');
+const noTimerRadioInput = document.getElementById('no_timer');
+const sevenLetterModeRadioInput = document.getElementById('seven');
+const eightLetterModeRadioInput = document.getElementById('eight');
+const soundOnRadioInput = document.getElementById('on');
+//gameplay area constants
+const startAndQuitButton = document.getElementById('main_game_area').children[1];
+const timerDisplay = document.getElementsByClassName('sidebar')[0].children[0].children[1];
+const resetTilesButton = document.getElementById('reset_button_container').children[0];
+const currentScoreContainer = document.querySelectorAll(".sidebar")[1].children[0].querySelector('span');
+const correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
+const bestScoreContainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
+const eighthLetterTileHolder = document.getElementById('eighth_tile_holder');
+
+
+
+//Event listeners to allow the how_to_play window to be opened and closed using the relevant buttons.
 closeButton.addEventListener('click', function () {
     howToPlayWindow.style.display = 'none';
 });
 
-document.getElementById('game_instructions').addEventListener('click', function () {
+gameInstructionsButton.addEventListener('click', function () {
     howToPlayWindow.style.display = 'block';
 });
 
 // Event listeners that give all buttons a form of focus when hovered over.
 
-const allButtons = document.getElementsByTagName('button');
 for (let button of allButtons) {
     button.addEventListener('mouseenter', function () {
         this.style.border = "solid 0.1rem gold";
@@ -27,7 +50,7 @@ for (let button of allButtons) {
  * @returns boolean
  */
 function soundMode() {
-    return document.getElementById('on').checked;
+    return soundOnRadioInput.checked;
 }
 
 // sound effect audio objects variables.
@@ -41,29 +64,26 @@ const incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3")
 // start game sound for enabled sound, and starts the clock. It also adds the random starting word letter tiles.
 // Clicking the quit button resets the clock and removes the unplaced letter tiles, and removes any letter tiles from the tile holders,
 // through a simulated reset tiles button click. The quit button when clicked also resets the current score and correct words counter.
-document.getElementById('main_game_area').children[1].addEventListener('click', async function () {
+startAndQuitButton.addEventListener('click', async function () {
     if (this.textContent === 'Start') {
         this.textContent = 'Quit';
         this.disabled = true;
         if (soundMode()) {
             gameStartSound.play();
         }
-        if (!(document.getElementById('no_timer').checked)) {
+        if (!(noTimerRadioInput.checked)) {
             timer = setInterval(timerAdjuster, 1000);
         }
         await createLetterTiles();
         this.disabled = false;
 
     } else {
-        const resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
         removeLetterTiles();
         this.textContent = 'Start';
         clearInterval(timer);
         setTimer();
-        const currentScorecontainer = document.querySelectorAll(".sidebar")[1].children[0].querySelector('span');
-        currentScorecontainer.textContent = '0';
-        const correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
+        currentScoreContainer.textContent = '0';
         correctWordCounterContainer.textContent = '0';
         correctWordsGiven = [];
     }
@@ -72,14 +92,14 @@ document.getElementById('main_game_area').children[1].addEventListener('click', 
 /** When called sets the start time of the timer, according to the currently checked timer radio input.
  */
 function setTimer() {
-    if (document.getElementById('threemins').checked) {
-        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '03:00';
-    } else if (document.getElementById('fivemins').checked) {
-        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '05:00';
-    } else if (document.getElementById('tenmins').checked) {
-        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '10:00';
-    } else if (document.getElementById('no_timer').checked) {
-        document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = '--:--';
+    if (threeMinsTimerInput.checked) {
+        timerDisplay.textContent = '03:00';
+    } else if (fiveMinsTimerInput.checked) {
+        timerDisplay.textContent = '05:00';
+    } else if (tenMinsTimerInput.checked) {
+        timerDisplay.textContent = '10:00';
+    } else if (noTimerRadioInput.checked) {
+        timerDisplay.textContent = '--:--';
     }
 
 }
@@ -87,11 +107,11 @@ function setTimer() {
 // Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame. This
 //is done by simulating a quit button click event. In addition a change in the checked radio input calls the onloadBestScore function to set the HTML best score content,
 //to the now selected timer value.
-for (let input of document.querySelectorAll('[name=timer]')) {
+for (let input of allTimerRadioInputs) {
     input.addEventListener('click', function () {
         setTimer();
-        if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
-            document.getElementById('main_game_area').children[1].click();
+        if (startAndQuitButton.textContent === 'Quit') {
+            startAndQuitButton.click();
         }
         onloadBestScore();
 
@@ -106,8 +126,8 @@ for (let input of document.querySelectorAll('[name=timer]')) {
  */
 function timerAdjuster() {
     try {
-        let timeInSeconds = (Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(0, 2))) * 60 +
-            Number(document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent.slice(3, 5));
+        let timeInSeconds = (Number(timerDisplay.textContent.slice(0, 2))) * 60 +
+            Number(timerDisplay.textContent.slice(3, 5));
         if (timeInSeconds > 0) {
             timeInSeconds -= 1;
 
@@ -115,26 +135,26 @@ function timerAdjuster() {
             let timerSeconds = timeInSeconds % 60;
             if (`${timerSeconds}`.length === 2) {
                 let strTime = `0` + `${minutes}` + `:` + `${timerSeconds}`;
-                document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
+                timerDisplay.textContent = strTime;
             } else {
                 let strTime = `0` + `${minutes}` + `:` + `0` + `${timerSeconds}`;
-                document.getElementsByClassName('sidebar')[0].children[0].children[1].textContent = strTime;
+                timerDisplay.textContent = strTime;
             }
         } else {
             if (soundMode()) {
                 timeUpSound.play();
             }
-            let currentBestScore = Number(document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent);
+            let currentBestScore = Number(bestScoreContainer.textContent);
             bestScoreUpdater();
-            let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
-            let correctWords = Number(document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent);
-            let pointsToWordsRatio = ((currentScore * 1000) / (correctWords * 1000)).toFixed(1);
-            if (correctWords === 0) {
+            let currentScore = Number(currentScoreContainer.textContent);
+            let correctWordsCounter = Number(correctWordCounterContainer.textContent);
+            let pointsToWordsRatio = ((currentScore * 1000) / (correctWordsCounter * 1000)).toFixed(1);
+            if (correctWordsCounter === 0) {
                 pointsToWordsRatio = 0;
             }
             Swal.fire({
                 title: 'TIMES UP!',
-                html: `<div>Score:${currentScore}</div>` + `<div>Correct Words:${correctWords}</div>` + `<div>points-to-words ratio:${pointsToWordsRatio}</div>`,
+                html: `<div>Score:${currentScore}</div>` + `<div>Correct Words:${correctWordsCounter}</div>` + `<div>points-to-words ratio:${pointsToWordsRatio}</div>`,
                 customClass: {
                     title: 'swal-title',
                     popup: 'swal-theme'
@@ -147,7 +167,7 @@ function timerAdjuster() {
                 showConfirmButton: true,
                 confirmButtonText: 'CONTINUE'
             }).then(function () {
-                let newBestScore = Number(document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent);
+                let newBestScore = Number(bestScoreContainer.textContent);
                 if (currentBestScore < newBestScore) {
                     Swal.fire({
                         title: 'NEW HIGH SCORE!',
@@ -165,8 +185,7 @@ function timerAdjuster() {
                     });
                 }
             });
-            let startButton = document.getElementById('main_game_area').children[1];
-            startButton.click();
+            startAndQuitButton.click();
         }
     } catch (error) {
         console.error(error);
@@ -178,18 +197,18 @@ function timerAdjuster() {
 //simulate a quit button click event, if a different radio input is checked midgame. The HTML best score content is also set to the localStorage best score variable value
 // that corresponds to the now selected letter mode, via a call to the onloadBestScore function.
 
-document.getElementById('eight').addEventListener('click', function () {
-    document.getElementById('eighth_tile_holder').style.setProperty('display', 'inline-block');
-    if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
-        document.getElementById('main_game_area').children[1].click();
+eightLetterModeRadioInput.addEventListener('click', function () {
+    eighthLetterTileHolder.style.setProperty('display', 'inline-block');
+    if (startAndQuitButton.textContent === 'Quit') {
+        startAndQuitButton.click();
     }
     onloadBestScore();
 });
 
-document.getElementById('seven').addEventListener('click', function () {
-    document.getElementById('eighth_tile_holder').style.setProperty('display', 'none');
-    if (document.getElementById('main_game_area').children[1].textContent === 'Quit') {
-        document.getElementById('main_game_area').children[1].click();
+sevenLetterModeRadioInput.addEventListener('click', function () {
+    eighthLetterTileHolder.style.setProperty('display', 'none');
+    if (startAndQuitButton.textContent === 'Quit') {
+        startAndQuitButton.click();
     }
     onloadBestScore();
 });
