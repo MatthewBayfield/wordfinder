@@ -733,7 +733,7 @@ function createLetterTileHolderEventListeners() {
         const tileHolders = document.getElementsByClassName('tile_holder');
         for (let tileHolder of tileHolders) {
             tileHolder.addEventListener('click', function () {
-                if (selectedTileCopy !== undefined) {
+                if (selectedTileCopy !== undefined && this.innerHTML.length === 0) {
                     this.innerHTML = selectedTileCopy.innerHTML;
                     selectedTileCopy.style.setProperty('visibility', 'hidden');
                     selectedTileCopy = undefined;
