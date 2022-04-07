@@ -791,7 +791,7 @@ function checkWord() {
         if (!correct) {
             if (correctWordsGiven.includes(submittedWord)) {
                 Swal.fire({
-                    title: 'Submitted before',
+                    title: 'Submitted before!',
                     html: 'You have already entered this correct word',
                     customClass: {
                         title: 'swal-title',
@@ -809,21 +809,40 @@ function checkWord() {
                     incorrectWordSubmittedSound.play();
                 }
             } else {
-                Swal.fire({
-                    title: 'INCORRECT!',
-                    html: 'Not a valid word',
-                    customClass: {
-                        title: 'swal-title',
-                        popup: 'swal-theme'
-                    },
-                    icon: 'error',
-                    iconColor: '#33047F',
-                    background: '#99FCFF',
-                    width: '50%',
-                    color: '#33047F',
-                    timer: '2000',
-                    showConfirmButton: false
-                });
+                if (submittedWord.length > 4) {
+                    Swal.fire({
+                        title: 'INCORRECT!',
+                        html: 'Not a valid word',
+                        customClass: {
+                            title: 'swal-title',
+                            popup: 'swal-theme'
+                        },
+                        icon: 'error',
+                        iconColor: '#33047F',
+                        background: '#99FCFF',
+                        width: '50%',
+                        color: '#33047F',
+                        timer: '2000',
+                        showConfirmButton: false
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Word too short!',
+                        html: 'Words must be 4 or more letters long',
+                        customClass: {
+                            title: 'swal-title',
+                            popup: 'swal-theme'
+                        },
+                        icon: 'error',
+                        iconColor: '#33047F',
+                        background: '#99FCFF',
+                        width: '50%',
+                        color: '#33047F',
+                        timer: '2000',
+                        showConfirmButton: false
+                    });
+
+                }
                 if (soundMode()) {
                     incorrectWordSubmittedSound.play();
                 }
