@@ -124,6 +124,7 @@ function timerAdjuster() {
             if (soundMode()) {
                 timeUpSound.play();
             }
+            let currentBestScore = Number(document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent);
             bestScoreUpdater();
             let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
             let correctWords = Number(document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent);
@@ -146,8 +147,8 @@ function timerAdjuster() {
                 showConfirmButton: true,
                 confirmButtonText: 'CONTINUE'
             }).then(function () {
-                let bestScore = Number(document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent);
-                if (currentScore === bestScore) {
+                let newBestScore = Number(document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent);
+                if (currentBestScore < newBestScore) {
                     Swal.fire({
                         title: 'NEW HIGH SCORE!',
                         customClass: {
