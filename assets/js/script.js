@@ -109,9 +109,8 @@ function setTimer() {
 
 }
 
-// Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame. This
-//is done by simulating a quit button click event. In addition a change in the checked radio input calls the onloadBestScore function to set the HTML best score content,
-//to the now selected timer value.
+// Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame.
+//In addition a change in the checked radio input calls the onloadBestScore function to set the HTML best score content for the selected timer mode.
 for (let input of allTimerRadioInputs) {
     input.addEventListener('click', function () {
         setTimer();
