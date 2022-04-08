@@ -77,7 +77,7 @@ startAndQuitButton.addEventListener('click', async function () {
             gameStartSound.play();
         }
         if (!(noTimerRadioInput.checked)) {
-            timer = setInterval(timerAdjuster, 1000);
+            timer = setInterval(gameTimer, 1000);
         }
         await createLetterTiles();
         this.disabled = false;
@@ -124,7 +124,7 @@ for (let input of allTimerRadioInputs) {
 
 /**Gives the timer its timer functionality. When the timer runs out, it ends the game by calling the gameEnd function. 
  */
-function timerAdjuster() {
+function gameTimer() {
     try {
         let timeInSeconds = (Number(timerDisplay.textContent.slice(0, 2))) * 60 +
             Number(timerDisplay.textContent.slice(3, 5));
