@@ -321,9 +321,8 @@ const words7Letters = random7Letter5000Words();
 // Used words array to keep track of the starting words already used in a gaming session, to prevent duplication. Words will be added to the array as they are used.
 let usedWords = [];
 
-/**Selects a random 7 letter word from the 5000 7 letter random word array, that has not yet been selected as a starting word during the game session.
- *  Adds the selected word to the used word array, to prevent future duplication when another word is selected. Also filters out any word containing spaces or characters not
- * contained in the standard alphabet.
+/**Selects a random 7 letter word from the 5000 7 letter random word array, that has not yet been used as a starting word in the game session.
+ *  Adds the selected word to the used word array. Also filters out any word containing spaces or characters not contained in the standard alphabet.
  * @returns a random 7 letter word
  */
 async function random7LetterWordSelector() {
