@@ -764,9 +764,8 @@ function createLetterTileHolderEventListeners() {
 let correctWordArray;
 let correctWordsGiven = [];
 
-/**Generates a string from the letter tile containing tile holders representing a user submitted word, and checks whether that word is contained within the correctWordArray,
- * and or in the correctWordsGiven array, that represents correct words already submitted. Depending on whether the word is correct, wrong or already used,
- *  an alert with a corresponding message is produced. A correct unused word is then added to the correctWordsGivenArray.
+/**Generates a string from a user submitted word, and checks whether that word is contained within the correctWordArray, and whether the word has been already submitted.
+ * An alert then indicates whether the word is valid and or used. A correct unused word is then added to the correctWordsGivenArray.
  */
 function checkWord() {
     try {
