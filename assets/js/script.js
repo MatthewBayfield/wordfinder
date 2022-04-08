@@ -510,9 +510,8 @@ async function noDefinitionWordFilter(retrievedWords) {
     }
 }
 
-/** Generates a concatenated filtered array of word containing objects, made from smaller unfiltered arrays each containing words of a single length between 4 and 7/8 letters
- * of the letters featured in the randomly selected word.
- *  The returned array is an early form of the correct word list array, which in its final form is used to check  the correctness of submitted word answers during the game.
+/** Generates a filtered array of word containing objects, made from smaller unfiltered arrays each containing words of a single length between 4 and all of the letters
+ * featured in the randomly selected word.
  * @returns concatenatedCorrectWordListArray - a preprocessed form of the correct word answer array 
  */
 async function correctWordListFilterAndConcatenate() {
