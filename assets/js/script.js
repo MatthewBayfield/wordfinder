@@ -956,7 +956,7 @@ function onloadBestScore() {
 onloadBestScore();
 
 /** When called during a game, it first resets the tile holders, and removes the letter tiles, before generating a new set of letter tiles for a new random
- *  starting word. It also resets the correctWordsGiven array, by assigning it to an empty array again. In summary it produces a next word in the game.
+ *  starting word. It also resets the correctWordsGiven array, by assigning it to an empty array again.
  */
 async function nextWord() {
     try {
