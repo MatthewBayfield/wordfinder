@@ -560,7 +560,6 @@ function letterChecker(correctWord, parentWord) {
 
 
 /** Filters out the words from the correct word list array that return a false boolean when entered as a parameter in the letter checker function.
- * Consequently the resultant word array, features only words with the same number of a given letter as the randomly selected starting word.
  * @returns filteredCorrectWordArray 
  */
 async function letterCheckerFilter() {
