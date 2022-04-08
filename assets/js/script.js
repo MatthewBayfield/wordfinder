@@ -741,9 +741,8 @@ function createLetterTileEventListeners() {
     }
 }
 
-/** When called, creates click event listeners for the letter tile holders. When the event is triggered the innerHTML of the currently selected letter tile, stored in the
- * selectedTileCopy variable is set as the innerHTML of the clicked tile holder div. The selectedTileCopy variable is then reassigned to be undefined,
- *  and the selected letter tile div hidden.
+/** Creates click event listeners for the letter tile holders. For an event the innerHTML of the currently selected letter tile, stored in the
+ * selectedTileCopy variable, is set as the innerHTML of the clicked tile holder. The selected letter tile is then hidden.
  * 
  */
 function createLetterTileHolderEventListeners() {
