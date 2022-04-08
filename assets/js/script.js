@@ -206,9 +206,8 @@ function gameEnd() {
     }
 }
 
-// Event listeners that adjust the number of tile holders by adding and removing an eighth holder div element when the seven or eight letter radio input is checked. They also
-//simulate a quit button click event, if a different radio input is checked midgame. The HTML best score content is also set to the localStorage best score variable value
-// that corresponds to the now selected letter mode, via a call to the onloadBestScore function.
+// Event listeners that adjust the number of tile holders by adding and removing an eighth holder when the seven or eight letter radio input is checked. They also
+//simulate a quit button click event, if a different radio input is checked midgame. The HTML best score content is also updated via a call to the onloadBestScore function.
 
 eightLetterModeRadioInput.addEventListener('click', function () {
     eighthLetterTileHolder.style.setProperty('display', 'inline-block');
