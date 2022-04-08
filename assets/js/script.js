@@ -1,4 +1,4 @@
-// DOM element constants:
+// JS Section: DOM element constants:
 
 const allButtons = document.getElementsByTagName('button');
 //how_to_play window constants
@@ -32,6 +32,43 @@ const nextWordButton = document.querySelectorAll(".sidebar")[0].children[2].quer
 const unplacedLetterTilesContainer = document.getElementById('gameplay_area').children[0];
 
 
+//JS Section: Global scope variables:
+
+// sound effect audio objects variables.
+const gameStartSound = new Audio("assets/audio/game_start.mp3");
+const timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
+const correctWordSubmittedSound = new Audio("assets/audio/correct_word.mp3");
+const incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3");
+
+// Assigns a constant variable to the generated random 5000 7 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
+//and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
+// only have to be performed once when the page  initially loads.
+const words7Letters = random7Letter5000Words();
+
+// Assigns a constant variable to the generated random 5000 8 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
+//and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
+// only have to be performed once when the page  initially loads.
+const words8Letters = random8Letter5000Words();
+
+// Used words array to keep track of the starting words already used in a gaming session, to prevent duplication. Words will be added to the array as they are used.
+let usedWords = [];
+
+// A variable to act as a transient copy of a selected letter tile's HTML content
+let selectedTileCopy;
+
+//  A variable that is assigned within the correctWordArrayFilterAndSorter function. It is assigned an array that contains all correct Words for
+// the current set of random letter tiles.
+let correctWordArray;
+
+//An array that is populated within the checkWord function, with correct words submitted by the user for the current letter tile set. Prevents the same word being used
+//by the user more than once as a correct answer.
+let correctWordsGiven = [];
+
+
+
+
+// JS Section: Event listeners
+
 //Event listeners to allow the how_to_play window to be opened and closed using the relevant buttons.
 closeButton.addEventListener('click', function () {
     howToPlayWindow.style.display = 'none';
@@ -52,20 +89,6 @@ for (let button of allButtons) {
         this.removeAttribute('style');
     });
 }
-
-/** Checks whether the sound mode 'on' radio input is checked. 
- * @returns boolean
- */
-function soundMode() {
-    return soundOnRadioInput.checked;
-}
-
-// sound effect audio objects variables.
-const gameStartSound = new Audio("assets/audio/game_start.mp3");
-const timeUpSound = new Audio("assets/audio/time_up_alert.mp3");
-const correctWordSubmittedSound = new Audio("assets/audio/correct_word.mp3");
-const incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3");
-
 
 //start/quit button click event listener, that when clicked starts and ends the game, including starting and stopping the timer, adding and removing the letter tiles,
 // and resetting the scores.
@@ -94,6 +117,89 @@ startAndQuitButton.addEventListener('click', async function () {
     }
 });
 
+// Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame.
+//In addition a change in the checked radio input calls the onloadBestScore function to set the HTML best score content for the selected timer mode.
+for (let input of allTimerRadioInputs) {
+    input.addEventListener('click', function () {
+        setTimer();
+        if (startAndQuitButton.textContent === 'Quit') {
+            startAndQuitButton.click();
+        }
+        onloadBestScore();
+
+    });
+}
+
+// Event listeners that adjust the number of tile holders by adding and removing an eighth holder when the seven or eight letter radio input is checked. They also
+//simulate a quit button click event, if a different radio input is checked midgame. The HTML best score content is also updated via a call to the onloadBestScore function.
+
+eightLetterModeRadioInput.addEventListener('click', function () {
+    eighthLetterTileHolder.style.setProperty('display', 'inline-block');
+    if (startAndQuitButton.textContent === 'Quit') {
+        startAndQuitButton.click();
+    }
+    onloadBestScore();
+});
+
+sevenLetterModeRadioInput.addEventListener('click', function () {
+    eighthLetterTileHolder.style.setProperty('display', 'none');
+    if (startAndQuitButton.textContent === 'Quit') {
+        startAndQuitButton.click();
+    }
+    onloadBestScore();
+});
+
+// Event listeners that open and close the game settings window, when clicking the respective close or game settings buttons
+
+gameSettingsButton.addEventListener('click', function () {
+    gameSettingsWindow.style.setProperty('visibility', 'visible');
+});
+
+gameSettingsWindowCloseButton.addEventListener('click', function () {
+    gameSettingsWindow.style.removeProperty('visibility');
+});
+
+// Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
+// by making them visible again.
+resetTilesButton.addEventListener('click', function () {
+    if (startAndQuitButton.textContent === 'Quit') {
+        for (let tileHolder of tileHolders) {
+            if (tileHolder.children.length !== 0) {
+                tileHolder.children[0].remove();
+
+            }
+        }
+        for (let letterTile of letterTiles) {
+            letterTile.style.removeProperty('visibility');
+            letterTile.style.removeProperty('border-color');
+        }
+    }
+});
+
+// A click event listener for the check word button, that calls the checkWord function to check whether a valid word has been submitted during a game.
+checkWordButton.addEventListener('click', function () {
+    if (startAndQuitButton.textContent === 'Quit') {
+        checkWord();
+    }
+});
+
+// A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
+nextWordButton.addEventListener('click', function () {
+    if (startAndQuitButton.textContent === 'Quit') {
+        nextWord();
+    }
+});
+
+
+//JS Section: Functions and Function calls
+
+/** Checks whether the sound mode 'on' radio input is checked. 
+ * @returns boolean
+ */
+function soundMode() {
+    return soundOnRadioInput.checked;
+}
+
 /** When called sets the start time of the timer, according to the currently checked timer radio input.
  */
 function setTimer() {
@@ -107,19 +213,6 @@ function setTimer() {
         timerDisplay.textContent = '--:--';
     }
 
-}
-
-// Event listener to call the setTimer function when any of the timer radio inputs are checked, as well as end the current game, if the timer is changed midgame.
-//In addition a change in the checked radio input calls the onloadBestScore function to set the HTML best score content for the selected timer mode.
-for (let input of allTimerRadioInputs) {
-    input.addEventListener('click', function () {
-        setTimer();
-        if (startAndQuitButton.textContent === 'Quit') {
-            startAndQuitButton.click();
-        }
-        onloadBestScore();
-
-    });
 }
 
 /**Gives the timer its timer functionality. When the timer runs out, it ends the game by calling the gameEnd function. 
@@ -206,66 +299,6 @@ function gameEnd() {
     }
 }
 
-// Event listeners that adjust the number of tile holders by adding and removing an eighth holder when the seven or eight letter radio input is checked. They also
-//simulate a quit button click event, if a different radio input is checked midgame. The HTML best score content is also updated via a call to the onloadBestScore function.
-
-eightLetterModeRadioInput.addEventListener('click', function () {
-    eighthLetterTileHolder.style.setProperty('display', 'inline-block');
-    if (startAndQuitButton.textContent === 'Quit') {
-        startAndQuitButton.click();
-    }
-    onloadBestScore();
-});
-
-sevenLetterModeRadioInput.addEventListener('click', function () {
-    eighthLetterTileHolder.style.setProperty('display', 'none');
-    if (startAndQuitButton.textContent === 'Quit') {
-        startAndQuitButton.click();
-    }
-    onloadBestScore();
-});
-
-// Event listeners that open and close the game settings window, when clicking the respective close or game settings buttons
-
-gameSettingsButton.addEventListener('click', function () {
-    gameSettingsWindow.style.setProperty('visibility', 'visible');
-});
-
-gameSettingsWindowCloseButton.addEventListener('click', function () {
-    gameSettingsWindow.style.removeProperty('visibility');
-});
-
-// Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
-// by making them visible again.
-resetTilesButton.addEventListener('click', function () {
-    if (startAndQuitButton.textContent === 'Quit') {
-        for (let tileHolder of tileHolders) {
-            if (tileHolder.children.length !== 0) {
-                tileHolder.children[0].remove();
-
-            }
-        }
-        for (let letterTile of letterTiles) {
-            letterTile.style.removeProperty('visibility');
-            letterTile.style.removeProperty('border-color');
-        }
-    }
-});
-
-// A click event listener for the check word button, that calls the checkWord function to check whether a valid word has been submitted during a game.
-checkWordButton.addEventListener('click', function () {
-    if (startAndQuitButton.textContent === 'Quit') {
-        checkWord();
-    }
-});
-
-// A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
-nextWordButton.addEventListener('click', function () {
-    if (startAndQuitButton.textContent === 'Quit') {
-        nextWord();
-    }
-});
-
 // Game mechanics functions
 
 /**Generates an array of single-word containing objects, producing upto 1000 7 Letter words beginnning with the letter submitted as a parameter. 
@@ -312,14 +345,6 @@ async function random7Letter5000Words() {
         console.error(error);
     }
 }
-
-// Assigns a constant variable to the generated random 5000 7 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
-//and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
-// only have to be performed once when the page  initially loads.
-const words7Letters = random7Letter5000Words();
-
-// Used words array to keep track of the starting words already used in a gaming session, to prevent duplication. Words will be added to the array as they are used.
-let usedWords = [];
 
 /**Selects a random 7 letter word from the 5000 7 letter random word array, that has not yet been used as a starting word in the game session.
  *  Adds the selected word to the used word array. Also filters out any word containing spaces or characters not contained in the standard alphabet.
@@ -397,12 +422,6 @@ async function random8Letter5000Words() {
         console.error(error);
     }
 }
-
-// Assigns a constant variable to the generated random 5000 8 letter word array. A word is selected from this prepopulated list of words everytime a game starts,
-//and for every new word within the same game, without duplications. Thus the fetch requests to generate the words needed for the game,
-// only have to be performed once when the page  initially loads.
-const words8Letters = random8Letter5000Words();
-
 
 /**Selects a random 8 letter word from the 5000 8 letter random word array, that has not yet been used as a starting word in the game session.
  *  Adds the selected word to the used word array. Also filters out any word containing spaces or characters not
@@ -715,9 +734,6 @@ function removeLetterTiles() {
     }
 }
 
-// A variable to act as a transient copy of a selected letter tile's HTML content
-let selectedTileCopy;
-
 /**Creates click event listeners for generated letter tiles. A click event triggers a border color change to indicate tile selection,
  *  and removes any other previous event effects applied to the other tiles not currently selected. An event also sets a variable to become a copy of the clicked letter tile
  * HTML content. 
@@ -760,9 +776,6 @@ function createLetterTileHolderEventListeners() {
         console.error(error);
     }
 }
-
-let correctWordArray;
-let correctWordsGiven = [];
 
 /**Generates a string from a user submitted word, and checks whether that word is contained within the correctWordArray, and whether the word has been already submitted.
  * An alert then indicates whether the word is valid and or used. A correct unused word is then added to the correctWordsGivenArray.
