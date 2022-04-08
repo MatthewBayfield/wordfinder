@@ -404,8 +404,8 @@ async function random8Letter5000Words() {
 const words8Letters = random8Letter5000Words();
 
 
-/**Selects a random 8 letter word from the 5000 8 letter random word array, that has not yet been selected as a starting word during the game session.
- *  Adds the selected word to the used word array, to prevent future duplication when another word is selected. Also filters out any word containing spaces or characters not
+/**Selects a random 8 letter word from the 5000 8 letter random word array, that has not yet been used as a starting word in the game session.
+ *  Adds the selected word to the used word array. Also filters out any word containing spaces or characters not
  * contained in the standard alphabet.
  * @returns a random 8 letter word
  */
