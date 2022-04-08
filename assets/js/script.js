@@ -122,11 +122,7 @@ for (let input of allTimerRadioInputs) {
     });
 }
 
-/**Gives the timer its timer functionality: decreases by 1 every time it is called until 0 when it resets. When the timer runs out, the random starting word letter tiles are
- * also removed, and the timeup sound plays if sound is enabled, and the quit button becomes a start button again. Also when the timer runs out, the current score is compared
- * to the bestScore local storage variable, if it exists, and sets the variable to the currrent score value if it is greater. If no bestScore exists, the current score is
- * set to the bestScore local storage value without comparison. Finally when the timer reaches zero, a times up sweetalert2 is triggered that displays a game summary;
- * then if a new high score is achieved, another sweetalert2 is generated.
+/**Gives the timer its timer functionality. When the timer runs out, it ends the game by calling the gameEnd function. 
  */
 function timerAdjuster() {
     try {
@@ -148,53 +144,66 @@ function timerAdjuster() {
             if (soundMode()) {
                 timeUpSound.play();
             }
-            let currentBestScore = Number(bestScoreContainer.textContent);
-            bestScoreUpdater();
-            let currentScore = Number(currentScoreContainer.textContent);
-            let correctWordsCounter = Number(correctWordCounterContainer.textContent);
-            let pointsToWordsRatio = ((currentScore * 1000) / (correctWordsCounter * 1000)).toFixed(1);
-            if (correctWordsCounter === 0) {
-                pointsToWordsRatio = 0;
-            }
-            Swal.fire({
-                title: 'TIMES UP!',
-                html: `<div>Score:${currentScore}</div>` + `<div>Correct Words:${correctWordsCounter}</div>` + `<div>points-to-words ratio:${pointsToWordsRatio}</div>`,
-                customClass: {
-                    title: 'swal-title',
-                    popup: 'swal-theme'
-                },
-                icon: 'info',
-                iconColor: '#33047F',
-                background: '#99FCFF',
-                width: '50%',
-                color: '#33047F',
-                showConfirmButton: true,
-                confirmButtonText: 'CONTINUE'
-            }).then(function () {
-                let newBestScore = Number(bestScoreContainer.textContent);
-                if (currentBestScore < newBestScore) {
-                    Swal.fire({
-                        title: 'NEW HIGH SCORE!',
-                        customClass: {
-                            title: 'swal-title',
-                            popup: 'swal-theme'
-                        },
-                        icon: 'info',
-                        iconColor: '#33047F',
-                        background: '#99FCFF',
-                        width: '50%',
-                        color: '#33047F',
-                        showConfirmButton: true,
-                        confirmButtonText: 'CONTINUE'
-                    });
-                }
-            });
-            startAndQuitButton.click();
+            gameEnd();
+
         }
     } catch (error) {
         console.error(error);
     }
 
+}
+
+/** Ends the game by simulating a quit button click, after calling the bestScoreUpdater function, and triggering a 'times up' alert that displays a game summary,
+ *  as well as a high score alert if one is achieved.
+ */
+function gameEnd() {
+    try {
+        let currentBestScore = Number(bestScoreContainer.textContent);
+        bestScoreUpdater();
+        let currentScore = Number(currentScoreContainer.textContent);
+        let correctWordsCounter = Number(correctWordCounterContainer.textContent);
+        let pointsToWordsRatio = ((currentScore * 1000) / (correctWordsCounter * 1000)).toFixed(1);
+        if (correctWordsCounter === 0) {
+            pointsToWordsRatio = 0;
+        }
+        Swal.fire({
+            title: 'TIMES UP!',
+            html: `<div>Score:${currentScore}</div>` + `<div>Correct Words:${correctWordsCounter}</div>` + `<div>points-to-words ratio:${pointsToWordsRatio}</div>`,
+            customClass: {
+                title: 'swal-title',
+                popup: 'swal-theme'
+            },
+            icon: 'info',
+            iconColor: '#33047F',
+            background: '#99FCFF',
+            width: '50%',
+            color: '#33047F',
+            showConfirmButton: true,
+            confirmButtonText: 'CONTINUE'
+        }).then(function () {
+            let newBestScore = Number(bestScoreContainer.textContent);
+            if (currentBestScore < newBestScore) {
+                Swal.fire({
+                    title: 'NEW HIGH SCORE!',
+                    customClass: {
+                        title: 'swal-title',
+                        popup: 'swal-theme'
+                    },
+                    icon: 'info',
+                    iconColor: '#33047F',
+                    background: '#99FCFF',
+                    width: '50%',
+                    color: '#33047F',
+                    showConfirmButton: true,
+                    confirmButtonText: 'CONTINUE'
+                });
+            }
+        });
+        startAndQuitButton.click();
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 // Event listeners that adjust the number of tile holders by adding and removing an eighth holder div element when the seven or eight letter radio input is checked. They also
