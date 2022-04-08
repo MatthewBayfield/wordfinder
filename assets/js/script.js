@@ -6,6 +6,9 @@ const howToPlayWindow = document.getElementById('how_to_play_window');
 const closeButton = howToPlayWindow.children[5];
 const gameInstructionsButton = document.getElementById('game_instructions');
 //game settings section constants
+const gameSettingsButton = document.getElementById('game_settings').children[1];
+const gameSettingsWindow = document.getElementById('game_settings').children[2];
+const gameSettingsWindowCloseButton = document.getElementById('game_settings').children[2].children[1];
 const threeMinsTimerInput = document.getElementById('threemins');
 const fiveMinsTimerInput = document.getElementById('fivemins');
 const tenMinsTimerInput = document.getElementById('tenmins');
@@ -22,7 +25,11 @@ const currentScoreContainer = document.querySelectorAll(".sidebar")[1].children[
 const correctWordCounterContainer = document.querySelectorAll(".sidebar")[1].children[1].querySelector('span');
 const bestScoreContainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
 const eighthLetterTileHolder = document.getElementById('eighth_tile_holder');
-
+const letterTiles = document.getElementsByClassName('tile');
+const tileHolders = document.getElementsByClassName('tile_holder');
+const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
+const nextWordButton = document.querySelectorAll(".sidebar")[0].children[2].querySelector('button');
+const unplacedLetterTilesContainer = document.getElementById('gameplay_area').children[0];
 
 
 //Event listeners to allow the how_to_play window to be opened and closed using the relevant buttons.
@@ -215,23 +222,18 @@ sevenLetterModeRadioInput.addEventListener('click', function () {
 
 // Event listeners that open and close the game settings window, when clicking the respective close or game settings buttons
 
-document.getElementById('game_settings').children[1].addEventListener('click', function () {
-    const gameSettingsWindow = document.getElementById('game_settings').children[2];
+gameSettingsButton.addEventListener('click', function () {
     gameSettingsWindow.style.setProperty('visibility', 'visible');
 });
 
-document.getElementById('game_settings').children[2].children[1].addEventListener('click', function () {
-    const gameSettingsWindow = document.getElementById('game_settings').children[2];
+gameSettingsWindowCloseButton.addEventListener('click', function () {
     gameSettingsWindow.style.removeProperty('visibility');
 });
 
 // Reset Tiles button event listener. Effectively removes any letter tiles placed into letter tile holders, and returns the letter tiles to their starting position,
 // by making them visible again.
-document.getElementById('reset_button_container').children[0].addEventListener('click', function () {
-    const start_button = document.getElementById('main_game_area').children[1];
-    const letterTiles = document.getElementsByClassName('tile');
-    if (start_button.textContent === 'Quit') {
-        const tileHolders = document.getElementsByClassName('tile_holder');
+resetTilesButton.addEventListener('click', function () {
+    if (startAndQuitButton.textContent === 'Quit') {
         for (let tileHolder of tileHolders) {
             if (tileHolder.children.length !== 0) {
                 tileHolder.children[0].remove();
@@ -246,18 +248,15 @@ document.getElementById('reset_button_container').children[0].addEventListener('
 });
 
 // A click event listener for the check word button, that calls the checkWord function to check whether a valid word has been submitted during a game.
-const checkWordButton = document.getElementsByClassName('sidebar')[0].getElementsByTagName('button')[0];
 checkWordButton.addEventListener('click', function () {
-    const start_button = document.getElementById('main_game_area').children[1];
-    if (start_button.textContent === 'Quit') {
+    if (startAndQuitButton.textContent === 'Quit') {
         checkWord();
     }
 });
 
 // A click event listener for the next word button, that calls the nextWord function, if clicked during a game, in order to generate a new set of starting word letter tiles.
-document.querySelectorAll(".sidebar")[0].children[2].querySelector('button').addEventListener('click', function () {
-    const start_button = document.getElementById('main_game_area').children[1];
-    if (start_button.textContent === 'Quit') {
+nextWordButton.addEventListener('click', function () {
+    if (startAndQuitButton.textContent === 'Quit') {
         nextWord();
     }
 });
@@ -442,7 +441,7 @@ async function random8LetterWordSelector() {
 async function urlGenerator() {
     try {
         let selectedWord;
-        if (document.getElementById('seven').checked) {
+        if (sevenLetterModeRadioInput.checked) {
             selectedWord = await random7LetterWordSelector();
         } else {
             selectedWord = await random8LetterWordSelector();
@@ -690,7 +689,7 @@ async function createLetterTiles() {
             const tileParagraph = document.createElement('p');
             tileParagraph.textContent = letter;
             tile.appendChild(tileParagraph);
-            document.getElementById('gameplay_area').children[0].appendChild(tile);
+            unplacedLetterTilesContainer.appendChild(tile);
         }
         createLetterTileEventListeners();
         createLetterTileHolderEventListeners();
@@ -705,10 +704,9 @@ async function createLetterTiles() {
  */
 function removeLetterTiles() {
     try {
-        let tiles = document.getElementById('gameplay_area').children[0].children;
-        if (tiles.length !== 0) {
-            while (tiles.length !== 0) {
-                tiles[0].remove();
+        if (letterTiles.length !== 0) {
+            while (letterTiles.length !== 0) {
+                letterTiles[0].remove();
             }
         }
     } catch (error) {
@@ -725,7 +723,6 @@ let selectedTileCopy;
  */
 function createLetterTileEventListeners() {
     try {
-        const letterTiles = document.getElementsByClassName('tile');
         for (let letterTile of letterTiles) {
             letterTile.addEventListener('click', function () {
                 selectedTileCopy = this;
@@ -750,7 +747,6 @@ function createLetterTileEventListeners() {
  */
 function createLetterTileHolderEventListeners() {
     try {
-        const tileHolders = document.getElementsByClassName('tile_holder');
         for (let tileHolder of tileHolders) {
             tileHolder.addEventListener('click', function () {
                 if (selectedTileCopy !== undefined && this.innerHTML.length === 0) {
@@ -775,7 +771,6 @@ let correctWordsGiven = [];
 function checkWord() {
     try {
         let submittedWord = "";
-        const tileHolders = document.getElementsByClassName('tile_holder');
         let correct = false;
         for (let tileHolder of tileHolders) {
             if (tileHolder.children.length !== 0) {
@@ -867,7 +862,6 @@ function checkWord() {
                 }
             }
         }
-        let resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
     } catch (error) {
         console.error(error);
@@ -881,12 +875,12 @@ function checkWord() {
 function scoreAdjuster(submittedWord) {
     try {
         const pointsScored = submittedWord.length;
-        let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
+        let currentScore = Number(currentScoreContainer.textContent);
         currentScore += pointsScored;
-        document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent = `${currentScore}`;
-        let correctWordCounter = Number(document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent);
+        currentScoreContainer.textContent = `${currentScore}`;
+        let correctWordCounter = Number(correctWordCounterContainer.textContent);
         correctWordCounter += 1;
-        document.querySelectorAll(".sidebar")[1].children[1].querySelector('span').textContent = `${correctWordCounter}`;
+        correctWordCounterContainer.textContent = `${correctWordCounter}`;
         if (correctWordsGiven.length === 10) {
             nextWord();
         }
@@ -901,13 +895,12 @@ function scoreAdjuster(submittedWord) {
  */
 function bestScoreUpdater() {
     try {
-        let currentScore = Number(document.querySelectorAll(".sidebar")[1].children[0].querySelector('span').textContent);
-        const timerModeOptions = document.querySelectorAll('[name=timer]');
-        for (let option of timerModeOptions) {
-            if (option.checked && option !== document.querySelectorAll('[name=timer]')[0]) {
+        let currentScore = Number(currentScoreContainer.textContent);
+        for (let option of allTimerRadioInputs) {
+            if (option.checked && option !== noTimerRadioInput) {
                 const id = option.getAttribute('id');
                 let letterMode;
-                if (document.getElementById('seven').checked) {
+                if (sevenLetterModeRadioInput.checked) {
                     letterMode = 7;
                 } else {
                     letterMode = 8;
@@ -920,7 +913,7 @@ function bestScoreUpdater() {
                         localStorage.setItem(`${bestScoreVariableName}`, `${currentScore}`);
                     }
                 }
-                document.querySelectorAll(".sidebar")[1].children[2].querySelector('span').textContent = localStorage.getItem(`${bestScoreVariableName}`);
+                bestScoreContainer.textContent = localStorage.getItem(`${bestScoreVariableName}`);
             }
         }
     } catch (error) {
@@ -934,28 +927,26 @@ function bestScoreUpdater() {
  */
 function onloadBestScore() {
     try {
-        const timerModeOptions = document.querySelectorAll('[name=timer]');
-        let bestScorecontainer = document.querySelectorAll(".sidebar")[1].children[2].querySelector('span');
-        for (let option of timerModeOptions) {
-            if (option.checked && option !== document.querySelectorAll('[name=timer]')[0]) {
+        for (let option of allTimerRadioInputs) {
+            if (option.checked && option !== noTimerRadioInput) {
                 const id = option.getAttribute('id');
                 let letterMode;
-                if (document.getElementById('seven').checked) {
+                if (sevenLetterModeRadioInput.checked) {
                     letterMode = 7;
                 } else {
                     letterMode = 8;
                 }
                 let bestScoreVariableName = `${id}bestScore${letterMode}`;
                 if (localStorage.getItem(`${bestScoreVariableName}`) !== null) {
-                    bestScorecontainer.textContent = localStorage.getItem(`${bestScoreVariableName}`);
+                    bestScoreContainer.textContent = localStorage.getItem(`${bestScoreVariableName}`);
                 } else {
-                    bestScorecontainer.textContent = '0';
+                    bestScoreContainer.textContent = '0';
 
                 }
             }
         }
-        if (document.querySelectorAll('[name=timer]')[0].checked) {
-            bestScorecontainer.textContent = '--';
+        if (noTimerRadioInput.checked) {
+            bestScoreContainer.textContent = '--';
         }
     } catch (error) {
         console.error(error);
@@ -970,9 +961,7 @@ onloadBestScore();
  */
 async function nextWord() {
     try {
-        const nextWordButton = document.querySelectorAll(".sidebar")[0].children[2].querySelector('button');
         nextWordButton.disabled = true;
-        const resetTilesButton = document.getElementById('reset_button_container').children[0];
         resetTilesButton.click();
         removeLetterTiles();
         correctWordsGiven = [];
