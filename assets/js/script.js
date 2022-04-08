@@ -67,10 +67,8 @@ const correctWordSubmittedSound = new Audio("assets/audio/correct_word.mp3");
 const incorrectWordSubmittedSound = new Audio("assets/audio/incorrect_word.mp3");
 
 
-//start button click event listener. Changes button to a quit button, and a quit button to start button when clicked. Clicking the start button also triggers the
-// start game sound for enabled sound, and starts the clock. It also adds the random starting word letter tiles.
-// Clicking the quit button resets the clock and removes the unplaced letter tiles, and removes any letter tiles from the tile holders,
-// through a simulated reset tiles button click. The quit button when clicked also resets the current score and correct words counter.
+//start/quit button click event listener, that when clicked starts and ends the game, including starting and stopping the timer, adding and removing the letter tiles,
+// and resetting the scores.
 startAndQuitButton.addEventListener('click', async function () {
     if (this.textContent === 'Start') {
         this.textContent = 'Quit';
