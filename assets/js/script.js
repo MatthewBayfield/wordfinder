@@ -718,7 +718,7 @@ function removeLetterTiles() {
 // A variable to act as a transient copy of a selected letter tile's HTML content
 let selectedTileCopy;
 
-/**When called creates click event listeners for generated letter tiles. A click event triggers a border color change to indicate tile selection,
+/**Creates click event listeners for generated letter tiles. A click event triggers a border color change to indicate tile selection,
  *  and removes any other previous event effects applied to the other tiles not currently selected. An event also sets a variable to become a copy of the clicked letter tile
  * HTML content. 
  */
