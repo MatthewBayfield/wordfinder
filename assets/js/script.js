@@ -335,7 +335,7 @@ async function sevenLetter1000Words(letter) {
         return wordArray;
     } catch (error) {
         console.error(error);
-        alert('Sorry there seems to be a problem, please try again later.');
+        errorFunction();
     }
 }
 
@@ -412,7 +412,7 @@ async function eightLetter1000Words(letter) {
         return wordArray;
     } catch (error) {
         console.error(error);
-        alert('Sorry there seems to be a problem, please try again later.');
+        errorFunction();
     }
 }
 
@@ -519,6 +519,7 @@ async function correctWordListFetcher(url) {
         return retrievedWords;
     } catch (error) {
         console.error(error);
+        errorFunction();
     }
 
 }
