@@ -193,6 +193,25 @@ nextWordButton.addEventListener('click', function () {
 
 //JS Section: Functions and Function calls
 
+/** Displays a game error message. To be called within a catch statement for the purpose of error handling and user feedback. 
+ */
+function errorFunction() {
+    Swal.fire({
+        title: 'Game Error!',
+        html: 'Sorry something seems to have gone wrong; try refresh the page. If the same error persists try again later',
+        customClass: {
+            title: 'swal-title',
+            popup: 'swal-theme'
+        },
+        icon: 'error',
+        iconColor: '#ff0000',
+        background: '#ffffff',
+        width: '50%',
+        color: '#33047F',
+        showConfirmButton: false
+    })
+}
+
 /** Checks whether the sound mode 'on' radio input is checked. 
  * @returns boolean
  */
