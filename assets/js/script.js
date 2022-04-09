@@ -208,7 +208,8 @@ function errorFunction() {
         background: '#ffffff',
         width: '50%',
         color: '#33047F',
-        showConfirmButton: false
+        showConfirmButton: false,
+        allowOutsideClick: false
     })
 }
 
