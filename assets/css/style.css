@@ -1,4 +1,7 @@
+/*Google fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Luckiest+Guy&family=Orbitron&display=swap');
+
+/*CSS Section: General styling*/
 
 /*Removes browser padding/margin/border box sizing*/
 * {
@@ -52,31 +55,35 @@ h3 {
     margin-top: 0;
 }
 
+#game_settings h3,
+#main_game_area h3 {
+    line-height: 1;
+}
+
+/*CSS Section: game preamble section styling*/
+
+#preamble {
+    height: 50%;
+}
+
+/*Styles the game description paragraph*/
 h1+p {
     font-size: 0.65rem;
     text-align: center;
     padding: 0 1rem;
 }
 
+/*Styles the game instructions button*/
 #game_instructions {
     margin: 0 auto;
     width: fit-content;
     display: block;
 }
 
-#main_game_area {
-    height: 50%;
-}
-
-#preamble {
-    height: 50%;
-}
-
 #how_to_play {
     position: relative;
     margin-top: 0.2rem;
 }
-
 
 #how_to_play_window {
     text-align: center;
@@ -98,7 +105,7 @@ h1+p {
     margin-top: 0.3rem;
 }
 
-/*close button*/
+/*styles the how_to_play window close button*/
 #how_to_play_window>button {
     position: relative;
     top: -1%;
@@ -106,6 +113,7 @@ h1+p {
     width: fit-content;
 }
 
+/*Styles the instructions paragraph*/
 #how_to_play_window>p {
     font-size: 0.65rem;
     margin-bottom: 0.3rem;
@@ -120,6 +128,7 @@ h1+p {
     text-align: center;
 }
 
+/*Styles the game settings window*/
 #game_settings>div {
     position: absolute;
     top: 0;
@@ -137,16 +146,19 @@ h1+p {
     padding-top: 1rem;
 }
 
+/*Styles the game settings button*/
 #settings_button {
     position: relative;
     bottom: 0.3rem;
 }
 
+/*Styles the game settings close button*/
 #game_settings>div>button {
     position: relative;
     top: 10%;
 }
 
+/*Styles the game_settings_windwow inputs container*/
 #game_settings>div>div {
     display: flex;
     padding: 0 0.3rem;
@@ -162,14 +174,15 @@ h1+p {
     height: 0.8rem;
 }
 
-#game_settings h3,
-#main_game_area h3 {
-    line-height: 1;
-}
-
 #game_settings input,
 #game_settings label {
     font-size: 0.5rem;
+}
+
+/*CSS Section: main game area styling*/
+
+#main_game_area {
+    height: 50%;
 }
 
 #main_game_area>div {
@@ -211,12 +224,14 @@ h1+p {
     margin: 0 auto;
 }
 
+/*Styles the tile and tile holder container*/
 #gameplay_area {
     flex: 3 1;
     display: flex;
     flex-direction: column;
 }
 
+/*Styles the unplaced tiles container*/
 #gameplay_area>div {
     flex: 1 auto;
     text-align: center;
@@ -244,6 +259,7 @@ h1+p {
     margin: 0.8rem auto 0.6rem;
 }
 
+/*Start button styling*/
 #main_game_area>h2+button {
     width: fit-content;
     margin: 0 auto;
