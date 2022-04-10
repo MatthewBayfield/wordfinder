@@ -210,7 +210,7 @@ function errorFunction() {
         color: '#33047F',
         showConfirmButton: false,
         allowOutsideClick: false
-    })
+    });
 }
 
 /** Checks whether the sound mode 'on' radio input is checked. 
