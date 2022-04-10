@@ -152,6 +152,10 @@ h1+p {
     bottom: 0.3rem;
 }
 
+#game_settings legend {
+    width: 100%;
+}
+
 /*Styles the game settings close button*/
 #game_settings>div>button {
     position: relative;
