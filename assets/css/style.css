@@ -200,7 +200,7 @@ h1+p {
 
 .tile_holder {
     display: inline-block;
-    border: 0.1rem solid white;
+    border: 0.1rem solid #ffffff;
     width: 2.5rem;
     height: 2.5rem;
     vertical-align: top;
@@ -208,7 +208,7 @@ h1+p {
 
 .tile {
     display: inline-block;
-    border: 0.1rem solid white;
+    border: 0.1rem solid #ffffff;
     width: 2.5rem;
     height: 2.5rem;
     margin: 0.1rem;
