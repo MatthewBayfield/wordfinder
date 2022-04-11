@@ -80,6 +80,18 @@ Upon clicking the button a bordered popup window titled 'HOW TO PLAY' opens obsc
 
 <img src="docs/screenshots/how_to_play_window.png" alt="wordfinder how to play window" width=75% height=75%>
 
+### Game Settings section and window
+Just like the how to play section, this section is titled with a suggestive title, indicating without doubt the purpose of the section. It contains a game settings button which like all buttons on the page provides feedback when clicked or hovered over. 
+
+<img src="docs/screenshots/game_settings_section.png" alt="wordfinder game settings section" width=75% height=75%>
+
+When the button is clicked, it opens up the bordered popup game settings window in front of the existing page content.  It contains three sections arranged horizontally. Each section consists of a legend and a group of related radio inputs. The leftmost section consists of timer options, where a user can choose to have 3, 5 and 10 minutes on the timer, as well as a no timer option; checking an input automatically sets the timer display. A default time of 5m is checked in the event the user plays the game without opening the settings. 
+
+The next group of inputs is for the letter mode, whereby a user can choose to play with 7 or 8 random sets of starting letter tiles; the 7 input is checked by default. Checking a letter number input automatically adjusts the number of visible tile holders and starting letter tiles. For both of these game mode sections, checking a different input midgame, quits the ongoing game --- thus preventing any strange effects or cheating. Additionally both of these sections provide sufficient game variability for the users, with arguably the 8 letter mode being easier to make smaller words from, and so changing the game difficulty; while the 3m timer option being suited to users short on time. Each mode also brings with it a different challenge and game intensity.
+
+The final section of inputs allows the user to enable or disable sound effects, and this can be changed midgame if desired; by default the 'off' input is checked.
+
+<img src="docs/screenshots/game_settings_window.png" alt="wordfinder game settings section" width=75% height=75%>
 
 
 
