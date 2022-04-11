@@ -48,6 +48,6 @@ The game settings section will feature a game settings button that opens the gam
 
 The main game area section will contain a start button, followed by three flex item sections arranged vertically in portrait orientations, and horizontally in landscape orientations. The central section will be the gameplay area, where the letter tiles of the game will be located, as well as a range of buttons needed to play the game. The outer sections will contain either the game timer and other game buttons or the game scores.
 
-[Landscape wireframe.](docs/wordfinder_wireframe.png)
+[Landscape wireframe.](docs/wireframes/wordfinder_wireframe.png)
 
 
