@@ -71,6 +71,16 @@ The header includes a game title and short game description to give a user a cle
 
 <img src="docs/screenshots/header.png" alt="wordfinder page header" width=100% height=100%>
 
+### How To Play section and How To Play window
+This section is clearly titled to indicate its purpose and direct the users focus, who will likely be seeking information on how to the play game. Inside the section is a clearly visible button labelled game instructions, again making its function obvious to the user. Hovering over or clicking the button gives it a gold border, thus providing user feedback. 
+
+<img src="docs/screenshots/how_to_play.png" alt=" wordfinder how to play section" width=75% height=75%>
+
+Upon clicking the button a bordered popup window titled 'HOW TO PLAY' opens obscuring the page content behind it. It contains a set of game instructions as well as other explanatory content about the scoring system and different game modes. This information provides everything a user needs to know about the game, including an additional note advising them to adjust their browser settings for autoplaying of sounds if they enable game sounds. The window also contains a close button whose function should be obvious to the user. Upon page loading this window is initially open to make the game instructions immediately available without user effort; a downside to this as indicated by some user feedback, is that it makes the page look more cluttered when first seen.
+
+<img src="docs/screenshots/how_to_play_window.png" alt="wordfinder how to play window" width=75% height=75%>
+
+
 
 
 
