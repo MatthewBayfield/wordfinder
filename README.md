@@ -50,6 +50,20 @@ The main game area section will contain a start button, followed by three flex i
 
 Aside from the buttons, the main gameplay interface will involve clicking a displayed letter tile to select it, and then clicking an empty tile holder to place a letter there. A click and drag interface while possible does not perform as well on touchscreen devices.
 
-[Landscape wireframe.](docs/wireframes/wordfinder_wireframe.png)
+[Landscape wireframe](docs/wireframes/wordfinder_wireframe.png)
+
+### Surface
+All buttons are to be given a form of focus, such that when a user hovers over or clicks a button, a border color change will occur. Likewise the user will receive feedback when selecting a letter tile, again with a border color change indicating that the tile has been selected. When a user submits a word, alerts will be produced indicating a correct word, incorrect word, as well as whether a word has already been submitted; when the timer runs out the user will also be notified and receive game summary statistics and a high score alert if one is achieved.
+
+#### Typography
+Three google fonts will be used: 'Bungee Inline' for headings; 'Luckiest Guy' for buttons; and 'Orbitron' for general text. Collectively these fonts were chosen for their softer, more informal appearance, as well as for their somewhat futuristic style that make the game look more appealing/inviting and modern.
+
+#### Color Scheme
+<img src="docs/screenshots/wordfinder_color_scheme.png" width=50% height=50% alt="wordfinder color scheme">
+
+The color scheme creation was assisted by using the [coolors](https://coolors.co/?home) website.
+The purple and blue colors will be the primary colors used, chosen to maximise contrast and to make the site look bold and bright, and thus appealing to a user. The gold and white colors will be used for the letter tiles and their holders as well as for focus/feedback effects.
+
+
 
 
