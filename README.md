@@ -68,7 +68,8 @@ The purple and blue colors will be the primary colors used, chosen to maximise c
 
 ### Header
 The header includes a game title and short game description to give a user a clear immediate impression of the purpose of the site, and also what the game involves.
-<img src="docs/screenshots/header.png" alt="wordfinder page header" width=50% height=50%>
+
+<img src="docs/screenshots/header.png" alt="wordfinder page header" width=100% height=100%>
 
 
 
