@@ -46,7 +46,9 @@ The main section of the page is to be divided into two, first a game preamble se
 
 The game settings section will feature a game settings button that opens the game settings window. The window will include a timer, letter mode, and sound mode set of inputs to allow the user to easily change the game mode and enable or disable game sounds. In order to avoid giving the user an unpleasant surprise, the sound mode 'off' input will be checked by default.
 
-The main game area section will contain a start button, followed by three flex item sections arranged vertically in portrait orientations, and horizontally in landscape orientations. The central section will be the gameplay area, where the letter tiles of the game will be located, as well as a range of buttons needed to play the game. The outer sections will contain either the game timer and other game buttons or the game scores.
+The main game area section will contain a start button, followed by three flex item sections arranged vertically in portrait orientations, and horizontally in landscape orientations. The central section will be the gameplay area, where the letter tiles and tile holders of the game will be located, as well as a range of buttons needed to play the game. The outer sections will contain either the game timer and other game buttons or the game scores. 
+
+Aside from the buttons, the main gameplay interface will involve clicking a displayed letter tile to select it, and then clicking an empty tile holder to place a letter there. A click and drag interface while possible does not perform as well on touchscreen devices.
 
 [Landscape wireframe.](docs/wireframes/wordfinder_wireframe.png)
 
