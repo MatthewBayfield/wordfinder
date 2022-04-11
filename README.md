@@ -64,6 +64,12 @@ Three google fonts will be used: 'Bungee Inline' for headings; 'Luckiest Guy' fo
 The color scheme creation was assisted by using the [coolors](https://coolors.co/?home) website.
 The purple and blue colors will be the primary colors used, chosen to maximise contrast and to make the site look bold and bright, and thus appealing to a user. The gold and white colors will be used for the letter tiles and their holders as well as for focus/feedback effects.
 
+## Existing implemented features
+
+### Header
+The header includes a game title and short game description to give a user a clear immediate impression of the purpose of the site, and also what the game involves.
+<img src="docs/screenshots/header.png" alt="wordfinder page header" width=50% height=50%>
+
 
 
 
