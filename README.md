@@ -93,6 +93,12 @@ The final section of inputs allows the user to enable or disable sound effects, 
 
 <img src="docs/screenshots/game_settings_window.png" alt="wordfinder game settings section" width=75% height=75%>
 
+### Start/Quit button
+At the top of the main game area section is a start button preceded by a 'lets play' heading, which demarcates the main game area, and also guides the user's attention to the location of the start button. Once clicked the start button transforms into a quit button indicated by a change in the button text. Clicking the start button starts the game timer, and causes the first set of random letter tiles to appear. Also if sound is enabled a game start sound is played indicating to the user that the game has started.
+
+Clicking the quit button transforms it back into a start button with a change in button text, and resets the timer, and the tile holders by removing any letter tiles inside them; in addition the unplaced letter tiles are removed; finally the scores are reset.
+
+<img src="docs/screenshots/start_button.png" alt="wordfinder start game button" width=48% height=50%> <img src="docs/screenshots/quit_button.png" alt="wordfinder quit game button" width=48% height=50%>
 
 
 
