@@ -37,5 +37,17 @@ In order to meet the goal of the site owner, as well as satisfy the potential us
 - Display and produce various metrics that give a player useful information during a game for the purpose of achieving a target such as a new best score
 - Have a competitive metric such as the best score for each different game mode, that can be stored and updated locally for every player
 
+### Structure/Skeleton
+
+A reasonably minimalistic and compact design is preferred in order to make the game appealing and simple, whilst minimising any distractions from the main gameplay area. The page 
+is to be sized and styled responsively such that for as many device sizes as possible, in both landscape and portrait orientation, there is zero need for vertical scrolling. The potential trade-off being ease of legibility and or ease of interaction with the interactive elements. There will be no footer or navigation element as they are unnecessary, since there is no footer content, and only one page on the site. There will be a header containing a title and a game description.
+
+The main section of the page is to be divided into two, first a game preamble section, and then a main game area section. The preamble section is to be further divided into a how to play section, and a game settings section. Each section will contain a window that can be opened and closed using buttons, thus decluttering the page and saving vertical space. The vertical order of each preamble section is the order in which they will naturally be used by a user. The how to play section will feature a game instructions button that will allow the user to view the game instructions situated on the how to play window; on first loading the page this window will initially be opened, in part to make the instructions easy to view to users who naturally will want to read the instructions before playing, but also to encourage users who tend not to read them first, to at least give them a cursory glance so as to avoid later user confusion and thus frustration when attempting to play the game.
+
+The game settings section will feature a game settings button that opens the game settings window. The window will include a timer, letter mode, and sound mode set of inputs to allow the user to easily change the game mode and enable or disable game sounds. In order to avoid giving the user an unpleasant surprise, the sound mode 'off' input will be checked by default.
+
+The main game area section will contain a start button, followed by three flex item sections arranged vertically in portrait orientations, and horizontally in landscape orientations. The central section will be the gameplay area, where the letter tiles of the game will be located, as well as a range of buttons needed to play the game. The outer sections will contain either the game timer and other game buttons or the game scores.
+
+[Landscape wireframe.](docs/wordfinder_wireframe.png)
 
 
