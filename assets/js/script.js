@@ -101,6 +101,8 @@ startAndQuitButton.addEventListener('click', async function () {
         }
         if (!(noTimerRadioInput.checked)) {
             timer = setInterval(gameTimer, 1000);
+        } else {
+            timer = setInterval(function () {}, 1000)
         }
         await createLetterTiles();
         this.disabled = false;
