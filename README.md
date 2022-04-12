@@ -134,3 +134,9 @@ In the event something goes wrong with the game, in particular with the fetch re
 
 <img src="docs/screenshots/game_error_alert.png" alt="game error alert" width=30%% height=50%>
 
+## Possible future features
+- At the moment a user's best scores are stored locally, and they cannot directly compare it to other user's best scores. Also the best score will not be the same for different devices, browsers, or if the user clears their browser data. To overcome these limitations, a global server-side stored and updated scoreboard may be created using in part a backend compatible language like python, once I have learnt it. This feature will enable a user's best score to persist independently, and allow them to make direct comparison to other users with regard to their best score. 
+- Future improvements may be made to the game interface, specifically as indicated by some user feedback, it would be better if rather than just resetting all tiles, individual letter tile holders could be reset. This can easily be done using a similar clicking mechanism to that currently used, and so should be straightforward to introduce.
+- Some users also indicated they would prefer a different button layout in the main game area, namely they would prefer the check word button to be located where the reset tiles button currently is. Consequently at some point the check word and next word buttons may be placed adjacent to the reset tiles button.
+- The final future improvement to possibly be made is to create my own server-side word database, partly so that it is more suited to the game demands, but also because it cannot be assumed the datamuse API will always be freely available; also at the moment there is a limit of 100,000 requests that can be made daily to the datamuse API by a site. 
+
