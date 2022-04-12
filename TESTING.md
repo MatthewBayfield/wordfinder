@@ -1,0 +1,2 @@
+# Testing
+Testing was performed throughout the development of the site. The testing can be broken down into several categories, namely manual testing, user testing, and testing using tools, including validation tools. 
