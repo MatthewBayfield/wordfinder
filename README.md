@@ -100,5 +100,10 @@ Clicking the quit button transforms it back into a start button with a change in
 
 <img src="docs/screenshots/start_button.png" alt="wordfinder start game button" width=48% height=50%> <img src="docs/screenshots/quit_button.png" alt="wordfinder quit game button" width=48% height=50%>
 
+### Letter tiles and tile holders
+The letter tiles and holders are the key components of the game, and are what the user will interact with most. They are made as large as possible in the available space, so as to make them easy to click, as well as legible. Before clicking the start button, only the tile holders are present. Once the game is started a random row of 7 or 8 unplaced letter tiles, depending on the letter mode, appear above a row of an equal number of tile holders. The tile holders resemble the letter tiles except for containing any letter, in order to suggest to the user their function as a holder of letter tiles. A user selects a letter tile by clicking it, and a gold border appears to act as confirmation that a letter has been selected; clicking another letter tile again, deselects the previous tile, indicated by the removal of the gold border, and selects the just clicked tile, confirmed by giving it a gold border. The user can place a tile in any of the tile holders by clicking a tile holder after selecting a letter tile; the tile's letter content is then transferred to the holder as its content, and the selected letter tile is removed. A tile holder containing a letter cannot not be replaced by another unplaced letter tile through the same mechanism; the only way a user can remove any placed tiles in letter holders is by clicking the 'reset tiles' button located just below the tile holders for convenience. This button will empty all of the holders and restore any removed letter tiles to their original positions. 
+
+<img src="docs/screenshots/tiles_and_holders1.png" alt="wordfinder tile holders and letter tiles with some filled holders" width=48% height=50%> <img src="docs/screenshots/tiles_and_holders2.png" alt="wordfinder letter tiles and holders with unfilled holders" width=48% height=50%>
+
 
 
