@@ -21,3 +21,20 @@ Test users of the site were used throughout its development. They provided feedb
 ### Examples of user feedback
 - During the early development of the site, the game settings were always visible, without the use of a separate window accessed through a button. One test user commented that this made the site too cluttered, and recommended displaying them similarly to how the game instructions were displayed, namely via an open and closable popup window. This recommendation was implemented.
 - Another user said thy would prefer a different alert for submitted words that were less than 4 letters, than the generic invalid word alert; as this could confuse a user who may have forgotten that submitted words must be at least 4+ letters, and so if they entered a valid 3-letter word, they would not understand why the word is invalid. This feedback is what led to the creation of a 'word too short' alert.
+
+## Use of HTML, CSS and JS validators
+
+### HTML and CSS validators
+The current site passes the [w3 HTML validator](https://validator.w3.org/nu/), and the [w3 CSS validator](https://jigsaw.w3.org/css-validator/) with no errors or warnings.
+
+#### Resolved issues raised by the HTML and CSS validators
+- The HTML validator indicated that a space between the game instructions button element attributes was missing; so one was added.
+
+### JS validator
+The current site passes the [JSHint validator](https://jshint.com/) with only minor insignificant warnings: warnings around the use of async functions, variable keywords, and template literals, with regard to them being only available in certain more modern versions of JS; however the ['can I use site'](https://caniuse.com/) and browser testing suggests such things are widely supported. The only other warnings are about functions declared within loops referencing outer scoped variables; but this as intended and causes no apparent issues.
+
+#### Resolved issues raised by the JSHint validator
+- Warnings were raised about missing semi-colons, which were subsequently added.
+- Missing variable keywords such 'let' and 'const', which were added.
+- Misspelt variables, or unintended variations in variable names causing reference errors; these were easily fixed by making spelling corrections.
+- A confusing use of the negation operator, where !(x===y) was used as opposed to (x!==y); this was changed to resolve the warning.
