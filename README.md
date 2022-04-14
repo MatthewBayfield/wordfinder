@@ -164,4 +164,41 @@ Assuming you already have git installed, the project can be cloned, in order to 
 4. Copy the URL.
 5. Using a command-line tool, navigate to the directory where you want the cloned directory to be located.
 6. Type the command 'git clone' followed by the pasted URL : $ git clone https://github.com/MatthewBayfield/wordfinder.git
-7. Press enter to create your local clone
+7. Press enter to create your local clone.
+
+## Credits
+
+### Media 
+The game sound effects were sourced from [pixabay](https://pixabay.com/):
+- 'correctWordSubmittedSound' sound effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6033">Pixabay</a>
+- 'incorrectWordSubmittedSound' sound effect from <a href="https://pixabay.com/music/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6008">Pixabay</a>
+- 'timeUpSound' sound effect by <a href="/users/edr-1177074/?tab=audio&amp;utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=audio&amp;utm_content=8436">EdR</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=8436">Pixabay</a>
+- 'gameStartSound' sound effect from <a href="https://pixabay.com/music/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6104">Pixabay</a>
+
+Favicon Image:
+was sourced from <a href="https://www.freepik.com/vectors/find-icon">Find icon vector created by rawpixel.com - www.freepik.com</a>, and converted using [favicon.io](https://favicon.io/).
+
+### Libraries
+The game alerts were produced using the [sweetalert2 library](https://sweetalert2.github.io/).
+
+### Content
+- The [datamuse API](https://www.datamuse.com/) was used to generate starting words and correct words for the game.
+- All fonts used were sourced from [google fonts](https://fonts.google.com/).
+- All text content was written by myself.
+- The color palette was generated using the [coolers palette generator](https://coolors.co/)
+
+### Tools
+- Firefox and chrome browser developer tools
+- Lighthouse browser extension
+- ARC toolkit browser extension
+- WAVE evaluation tool browser extension
+- WCAG color contrast checker
+- w3 HTML validator
+- w3 CSS validator
+- JSHint validator
+- NVDA screen reader
+
+### Other
+- A thank you to the test users for the feedback you provided.
+- Thanks to my Code Institute Mentor Richard Wells, for the guidance you provided throughout the project.
+
