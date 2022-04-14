@@ -142,3 +142,26 @@ In the event something goes wrong with the game, in particular with the fetch re
 
 ## Testing process
 The testing process performed on the site can be found in [TESTING.md](TESTING.md).
+
+## Deployment
+
+### Remote deployment
+
+The Wordfinder site was deployed on the hosting platform GitHub pages, using the following procedure:
+
+1. In the GitHub project repository, click on the settings tab near the top of the page.
+2. On the lefthand menu, in the section designated code and automation, click on the pages link.
+3. This brings up the GitHub pages section. In this section move down to the source subsection. In here using the drop down menu select the main branch of the project and click save.
+4. A message is then displayed indicating a successful deployment, and a live URL link for the site is displayed.
+
+The live URL link of the Wordfinder site: [Wordfinder website](https://matthewbayfield.github.io/wordfinder/)
+
+### Local deployment
+Assuming you already have git installed, the project can be cloned, in order to be ran locally, using the following procedure:
+1. On GitHub, navigate to the main page of the repository for the wordfinder project, or use this [link](https://github.com/MatthewBayfield/wordfinder).
+2. Above the list of files click the 'code' dropdown menu button.
+3. On this menu, under the clone section, click the HTTPS option, in order to clone the repository using HTTPS.
+4. Copy the URL.
+5. Using a command-line tool, navigate to the directory where you want the cloned directory to be located.
+6. Type the command 'git clone' followed by the pasted URL : $ git clone https://github.com/MatthewBayfield/wordfinder.git
+7. Press enter to create your local clone
