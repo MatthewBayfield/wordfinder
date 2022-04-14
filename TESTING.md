@@ -20,7 +20,7 @@ Test users of the site were used throughout its development. They provided feedb
 
 ### Examples of user feedback
 - During the early development of the site, the game settings were always visible, without the use of a separate window accessed through a button. One test user commented that this made the site too cluttered, and recommended displaying them similarly to how the game instructions were displayed, namely via an open and closable popup window. This recommendation was implemented.
-- Another user said thy would prefer a different alert for submitted words that were less than 4 letters, than the generic invalid word alert; as this could confuse a user who may have forgotten that submitted words must be at least 4+ letters, and so if they entered a valid 3-letter word, they would not understand why the word is invalid. This feedback is what led to the creation of a 'word too short' alert.
+- Another user said they would prefer a different alert for submitted words that were less than 4 letters, than the generic invalid word alert; as this could confuse a user who may have forgotten that submitted words must be at least 4+ letters, and so if they entered a valid 3-letter word, they would not understand why the word is invalid. This feedback is what led to the creation of a 'word too short' alert.
 
 ## Use of HTML, CSS and JS validators
 
@@ -38,3 +38,16 @@ The current site passes the [JSHint validator](https://jshint.com/) with only mi
 - Missing variable keywords such 'let' and 'const', which were added.
 - Misspelt variables, or unintended variations in variable names causing reference errors; these were easily fixed by making spelling corrections.
 - A confusing use of the negation operator, where !(x===y) was used as opposed to (x!==y); this was changed to resolve the warning.
+
+## Lighthouse extension tool scores
+### Desktop scores
+<img src="docs/screenshots/lighthouse_desktop.png" alt="desktop lighthouse scores" width=50% height=50%>
+
+The performance metric is the only one below 100. The cause of this I suspect is the multiple fetch requests which cannot be avoided.
+
+### Mobile Scores
+<img src="docs/screenshots/lighthouse_mobile.png" alt='Mobile lighthouse scores' width=50% height=50%>
+
+The performance metric is again less than 100 for similar reasons as for the desktop scores, and also, according to the extension, because of an inefficient cache policy for assets. The SEO score is less than 100 because of the use of illegible font-sizes; the font sizes in the popup windows and game description, for smaller screens in landscape orientation, are admittedly smaller than is optimal, however this was a trade-off of removing the need for vertical scrolling. Also test users have not reported the text as unreadable due to its size. As part of future improvements to the site, a new improved adaptive design for the smaller screen sizes in landscape mode may be implemented to improve ease of legibility for some users.
+
+
