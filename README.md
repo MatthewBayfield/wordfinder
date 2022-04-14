@@ -140,3 +140,5 @@ In the event something goes wrong with the game, in particular with the fetch re
 - Some users also indicated they would prefer a different button layout in the main game area, namely they would prefer the check word button to be located where the reset tiles button currently is. Consequently at some point the check word and next word buttons may be placed adjacent to the reset tiles button.
 - The final future improvement to possibly be made is to create my own server-side word database, partly so that it is more suited to the game demands, but also because it cannot be assumed the datamuse API will always be freely available; also at the moment there is a limit of 100,000 requests that can be made daily to the datamuse API by a site. 
 
+## Testing process
+The testing process performed on the site can be found in [TESTING.md](TESTING.md).
