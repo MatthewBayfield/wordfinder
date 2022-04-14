@@ -55,4 +55,6 @@ Through the use of a variety of tools, attempts have been made to maximise the a
 
 Using the WCAG contrast checker browser extension, the site achieves an AAA standard, including for all simulated forms of color-blindness. Additionally using the ARC toolkit browser extension no errors are detected, and the only warnings about duplicate headings are not an issue, since for the headings they reference, one is on the main page, and the other on a popup window as is necessary. Using the web accessibility evaluation tool extension (WAVE) no errors or alerts are detected for the current site; an alert that was initially raised, was the radio input groupings were not enclosed in fieldset elements, and thus these were added to resolve the issue. Finally the NVDA screen reader was used on the site to examine how well the site was interpreted by a screen reader. 
 
+[return to README.md](README.md)
+
 
